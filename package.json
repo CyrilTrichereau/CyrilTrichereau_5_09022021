@@ -4,14 +4,15 @@
   "description": "Training OpenClassrooms: Web Developper. Project 5 : Build an e-commerce website",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "start": "webpack serve --open",
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch",
+    "start": "webpack serve --mode=development --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cyril Trichereau",
   "license": "ISC",
   "devDependencies": {
+    "@webpack-cli/generators": "^2.1.0",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
