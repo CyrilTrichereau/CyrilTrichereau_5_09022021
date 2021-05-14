@@ -224,7 +224,7 @@
             <!-- ID PRODUCT -->
             <p
               class="italic text-xs text-center text-indigo-700"
-              id="productPrice"
+              id="productID"
             >
               ID: 5be1ed3f1c9d44000030b061
             </p>
@@ -238,20 +238,17 @@
                 class="flex flex-col justify-center items-center text-base font-bold text-center"
               >
                 <label
-                  for="productSpecifications"
+                  for="productOptions"
                   class="text-lg underline mb-1"
+                  id="productOptionsLabel"
                   >Lenses</label
                 >
                 <select
-                  name="lenses"
-                  id="productSpecifications"
+                  name="options"
+                  id="productOptions"
                   required
                   class="text-base font-semibold text-center rounded-2xl p-1"
                 >
-                  <option value="">Choisissez une option</option>
-                  <option value="50mm 1.8">50mm 1.8</option>
-                  <option value="60mm 2.8">60mm 2.8</option>
-                  <option value="24-60mm 2.8/4.5">24-60mm 2.8/4.5</option>
                 </select>
               </div>
               <!-- PRICE -->
@@ -331,6 +328,7 @@
       </footer>
     </div>
     <!-- Feuilles Javascripts -->
-    <script type="text/javascript" src="./dist/product.js"></script>
+    <script type="text/javascript" src="./dist/main.js"></script>
+    <!-- <script type="text/javascript" src="./dist/product.js"></script> -->
   </body>
 </html>

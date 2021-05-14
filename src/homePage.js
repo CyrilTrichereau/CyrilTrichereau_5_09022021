@@ -7,11 +7,10 @@
 // -----------------------------
 // Objects
 import requestsURL from './JS/objectsAndVariables/requestsURL.js';
-import addressesArrayUrl from './JS/objectsAndVariables/requestsURL.js';
 
 // Functions
-import productPageDisplayInformation from './JS/functions/productPageDisplayInformation';
-// import actionsWhenClickFilter from './JS/functions/actionsWhenClickFilter.js';
+import heroPictureLoading from './JS/functions/heroPicture.js';
+import actionsWhenClickFilter from './JS/functions/actionsWhenClickFilter.js';
 
 // -----------------------------
 // -----------------------------
@@ -21,4 +20,11 @@ import productPageDisplayInformation from './JS/functions/productPageDisplayInfo
 // -----------------------------
 // -----------------------------
 
-productPageDisplayInformation ("5be9c4471c9d440000a730e8");
+// TARGET HTML FOR CATEGORY DISPLAYER
+let productBoxTarget = document.getElementById('categoryDisplayed');
+
+// FUNCTION CATEGORY DISPLAYER
+actionsWhenClickFilter (productBoxTarget);
+
+// HERO PICTURE LOADING
+heroPictureLoading (requestsURL.camera, 4);
