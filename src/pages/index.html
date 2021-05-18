@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- DEFAUT LANGUAGE -->
+    <link rel="alternate" hreflang="x-default" href="https://orinoco.fr/" />
+
+    <!-- GOOGLE BOT -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://www.orinoco.fr/" />
+
+    <!-- FAVICON -->
+    <link
+      rel="shortcut icon"
+      type="image/ico"
+      href="./static/faviconOrinoco.ico"
+    />
+
+    <!-- TAILWIND CDN -->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <!--  CSS sheet -->
+    <link rel="stylesheet" type="text/css" href="./styles/changes.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FONT AWESOME -->
+    <script
+      src="https://kit.fontawesome.com/e5957e3859.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Title and description -->
+    <title>
+      Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes
+      catégories de produits !
+    </title>
+    <meta
+      name="description"
+      content="Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes catégories de produits !"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="Orinoco" />
+    <meta name="twitter:site" content="@Orinoco" />
+    <meta
+      name="twitter:title"
+      content="Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes catégories de produits !"
+    />
+    <meta
+      name="twitter:description"
+      content="Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes catégories de produits !"
+    />
+    <meta name="twitter:creator" content="@TrichereauCyril" />
+
+    <!-- Twitter Summary card images must be at least 200x200px -->
+    <meta name="twitter:image" content="./images/logoOrinoco.png" />
+
+    <!-- Open Graph data -->
+    <meta
+      property="og:title"
+      content="Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes catégories de produits !"
+    />
+    <meta property="og:type" content="Site Internet Officiel" />
+    <meta property="og:url" content="https://www.orinoco.fr/" />
+    <meta property="og:image" content="https://orinoco/image/bandOrinoco.png" />
+    <meta
+      property="og:description"
+      content="Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes catégories de produits !"
+    />
+    <meta
+      property="og:site_name"
+      content="Orinoco, site de e-commerce spécialisé ! Venez découvrir nos différentes catégories de produits !"
+    />
+    <meta property="fb:admins" content="https://www.facebook.com/orinoco/" />
+  </head>
+  <!-- ----------------------------------------------------------------------------------------- 
+   ----------------------------------------------------------------------------------------- 
+  BODY ---------------------------------------------------------------------------------------- 
+---- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-->
+  <!-- BODY -->
+  <body
+    class="w-full flex flex-col justify-center items-center md:bg-indigo-900"
+  >
+    <!-- BACKGROUND WHITE -->
+    <div
+      class="
+        w-full
+        md:w-10/12
+        flex flex-col
+        justify-center
+        items-center
+        bg-white
+        md:mt-10
+        rounded-t-3xl
+      "
+    >
+      <!-- ----------------------------------------------------------------------------------------- 
+      HEADER ---------------------------------------------------------------------------------------- 
+    -->
+      <!-- HEADER -->
+      <header
+        class="flex flex-row justify-between items-center w-full shadow-lg"
+      >
+        <!-- LOGO AND TITLE ORINOCO -->
+        <div class="titleHeader flex justify-evenly mx-6 my-6 md:mx-12 md:my-8">
+          <img
+            src="./images/logoOrinoco.png"
+            alt="logo Orinoco"
+            class="max-h-5 md:max-h-9 m-auto"
+          />
+          <p class="textLogo text-2xl ml-3 md:text-4xl md:mx-6">Orinoco</p>
+        </div>
+
+        <!-- ICONS CART BASKET SEARCH -->
+        <div class="cart flex justify-evenly my-6 md:mx-12 md:my-8">
+          <!-- SEARCH -->
+          <div
+            class="
+              mx-2
+              p-2
+              cursor-pointer
+              group
+              hover:bg-indigo-900
+              rounded-3xl
+              hover:shadow-xl
+              group-focus:shadow-2xl
+            "
+          >
+            <i
+              class="
+                fas
+                fa-search
+                text-lg text-indigo-900
+                m-auto
+                md:text-2xl
+                group-focus:text-indigo-500 group-hover:text-white
+              "
+            ></i>
+          </div>
+
+          <!-- BASKET -->
+          <a
+            href="./pages/cart.html"
+            alt="Aller vers le panier"
+            class="
+              cart
+              flex
+              justify-evenly
+              px-2
+              mx-1
+              md:mx-4
+              cursor-pointer
+              group
+              hover:bg-indigo-900
+              rounded-3xl
+              hover:shadow-xl
+              group-focus:shadow-2xl
+            "
+          >
+            <i
+              class="
+                fas
+                fa-shopping-cart
+                text-lg text-indigo-900
+                m-auto
+                md:text-2xl
+                group-focus:text-indigo-500 group-hover:text-white
+              "
+            ></i>
+            <p
+              class="
+                text-sm
+                md:text-1xl
+                mt-5
+                ml-1
+                text-indigo-900
+                group-focus:text-indigo-500 group-hover:text-white
+              "
+            >
+              1
+            </p>
+          </a>
+          <!-- ACCOUNT -->
+          <div
+            class="
+              mx-2
+              p-2
+              cursor-pointer
+              group
+              hover:bg-indigo-900
+              rounded-3xl
+              hover:shadow-xl
+              group-focus:shadow-2xl
+            "
+          >
+            <i
+              class="
+                fas
+                fa-user
+                text-lg text-indigo-900
+                m-auto
+                md:text-2xl
+                group-focus:text-indigo-500 group-hover:text-white
+              "
+            ></i>
+          </div>
+        </div>
+      </header>
+      <!-- ----------------------------------------------------------------------------------------- 
+  MAIN ---------------------------------------------------------------------------------------- 
+-->
+      <!-- MAIN -->
+      <main
+        class="
+          w-full
+          flex flex-col
+          justify-center
+          items-center
+          mt-10
+          rounded-3xl
+          md:rounded-none
+          relative
+          overflow-hidden
+        "
+      >
+        <!-- ERASE BEFORE PRODUCTION -->
+        <div
+          id="linksDeveloppment"
+          class="w-full flex flex-row justify-evenly items-center my-8"
+        >
+          <a href="./index.html">Home Page</a>
+          <a href="./pages/productPage.html">Product Page</a>
+          <a href="./pages/cart.html">Cart</a>
+          <a href="./pages/orderConfirmation.html">Order Confirmation</a>
+        </div>
+
+        <!-- TITLE -->
+        <div
+          class="
+            title
+            w-full
+            flex flex-row
+            justify-center
+            items-center
+            flex-wrap
+          "
+        >
+          <h1 class="w-5/6 text-3xl font-black text-center">
+            Bienvenue chez
+            <span class="textLogo text-4xl">Orinoco</span>
+            !
+          </h1>
+          <p
+            class="
+              w-5/6
+              text-1xl
+              mt-2
+              ml-1
+              top-8
+              font-semibold
+              text-center text-indigo-900
+              italic
+            "
+          >
+            Le nouveau venu du e-commerce, qui vient révolutionner la vente en
+            ligne !
+          </p>
+        </div>
+
+        <!-- HERO -->
+        <div
+          class="
+            hero
+            w-11/12
+            flex flex-col
+            justify-center
+            items-center
+            mt-10
+            rounded-3xl
+            relative
+            overflow-hidden
+            shadow-xl
+          "
+        >
+          <!-- PICTURE HERO -->
+          <img
+            src=""
+            alt="Image d'un produit de la catégorie appareil photo"
+            class="relative"
+            id="heroPicture"
+          />
+          <!-- TEXT HERO -->
+          <p
+            class="
+              w-5/6
+              text-1xl
+              lg:text-2xl
+              xl:text-3xl
+              mt-2
+              ml-1
+              md:absolute
+              top-8
+              lg:top-12
+              xl:top-16
+              font-black
+              text-center
+            "
+          >
+            Découvrez notre gamme d'appareil photo et changez votre vision de la
+            photographie !
+          </p>
+          <!-- ANCHOR TEXT -->
+          <a
+            href="#productsDisplayer"
+            class="
+              w-full
+              flex flex-col
+              justify-center
+              items-center
+              md:absolute
+              top-2
+              lg:top-5
+              xl:top-8
+              mb-4
+              md:mb-0
+              group
+            "
+          >
+            <p
+              class="
+                w-auto
+                text-sm
+                lg:text-base
+                xl:text-lg
+                mt-2
+                ml-1
+                text-indigo-900
+                italic
+                font-semibold
+                text-center
+                group-hover:shadow-xl
+                group-hover:underline
+                group-focus:text-white
+                group-focus:shadow-2xl
+                group-hover:bg-white
+                group-focus:bg-indigo-900
+                rounded-3xl
+                px-4"
+                id="goToCategoryCamera"
+            >
+              Voir tous les produits de la catégorie appareils photos vintage
+            </p>
+          </a>
+        </div>
+
+        <!-- 
+          PRODUCTS DIPLAYER
+        -->
+        <div
+          class="
+            categories
+            w-full
+            flex flex-col
+            justify-evenly
+            items-center
+            bg-gray-100
+            mt-12
+            pb-10
+            shadow-xl
+          "
+          id="productsDisplayer"
+        >
+          <!-- TITLE -->
+          <h2
+            class="
+              w-5/6
+              text-3xl
+              font-black
+              mx-4
+              mt-12
+              mb-6
+              text-center text-indigo-900
+            "
+          >
+            Nos Produits
+          </h2>
+          <!-- FILTERS -->
+          <h3
+            class="
+              w-5/6
+              max-w-1600
+              text-2xl
+              font-bold
+              mx-4
+              mt-2
+              text-indigo-800
+            "
+          >
+            Filtres
+          </h3>
+          <div
+            class="
+              filter
+              w-full
+              max-w-1600
+              flex flex-wrap
+              justify-evenly
+              items-center
+              text-indigo-900
+            "
+          >
+            <!-- TEDDY BEARS -->
+            <div
+              class="
+                category
+                flex
+                justify-evenly
+                items-center
+                rounded-3xl
+                m-4
+                px-4
+                p-2
+                shadow-lg
+                bg-white
+                cursor-pointer
+                group
+                hover:bg-indigo-900
+                rounded-3xl
+                hover:shadow-xl
+                group-focus:shadow-2xl
+              "
+              id="buttonTeddyFilter"
+            >
+              <i
+                class="
+                  fab
+                  fa-earlybirds
+                  text-2xl
+                  mx-2
+                  group-focus:text-indigo-500 group-hover:text-white
+                "
+              ></i>
+              <p
+                class="
+                  m-2
+                  text-1xl
+                  ml-1
+                  font-black
+                  text-center
+                  group-focus:text-indigo-500 group-hover:text-white
+                "
+              >
+                Ours en peluche faits à la main
+              </p>
+            </div>
+            <!-- CAMERAS -->
+            <div
+              class="
+                category
+                flex
+                justify-evenly
+                items-center
+                rounded-3xl
+                m-4
+                px-4
+                p-2
+                shadow-lg
+                bg-white
+                cursor-pointer
+                group
+                hover:bg-indigo-900
+                rounded-3xl
+                hover:shadow-xl
+                group-focus:shadow-2xl
+              "
+              id="buttonCameraFilter"
+            >
+              <i
+                class="
+                  fas
+                  fa-camera-retro
+                  text-2xl
+                  mx-2
+                  group-focus:text-indigo-500 group-hover:text-white
+                "
+              ></i>
+              <p
+                class="
+                  m-2
+                  text-1xl
+                  ml-1
+                  font-black
+                  text-center
+                  group-focus:text-indigo-500 group-hover:text-white
+                "
+              >
+                Caméras vintage
+              </p>
+            </div>
+            <!-- FURNITURE -->
+            <div
+              class="
+                category
+                flex
+                justify-evenly
+                items-center
+                rounded-3xl
+                m-4
+                px-4
+                p-2
+                shadow-lg
+                bg-white
+                cursor-pointer
+                group
+                hover:bg-indigo-900
+                rounded-3xl
+                hover:shadow-xl
+                group-focus:shadow-2xl
+              "
+              id="buttonFurnitureFilter"
+            >
+              <i
+                class="
+                  fas
+                  fa-chair
+                  text-2xl
+                  mx-2
+                  group-focus:text-indigo-500 group-hover:text-white
+                "
+              ></i>
+              <p
+                class="
+                  m-2
+                  text-1xl
+                  ml-1
+                  font-black
+                  text-center
+                  group-focus:text-indigo-500 group-hover:text-white
+                "
+              >
+                Meubles en chêne
+              </p>
+            </div>
+          </div>
+
+          <!-- 
+            CATEGORY SELECTED 
+          -->
+          <div
+            class="
+              categorySelected
+              flex flex-wrap flex-row
+              justify-evenly
+              items-center
+              mt-8
+              mx-2
+            "
+            id="categoryDisplayed"
+          ></div>
+        </div>
+      </main>
+
+      <!-- ----------------------------------------------------------------------------------------- 
+  FOOTER ---------------------------------------------------------------------------------------- 
+-->
+      <!-- FOOTER -->
+      <footer
+        class="
+          w-full
+          flex flex-wrap flex-col
+          md:flex-row
+          justify-evenly
+          items-center
+          italic
+          font-semibold
+          text-lg
+          my-8
+          text-indigo-900
+        "
+      >
+        <p
+          class="
+            text-center
+            rounded-3xl
+            px-4
+            cursor-pointer
+            hover:shadow-xl
+            hover:underline
+            hover:bg-white
+            focus:text-white
+            focus:shadow-2xl
+            focus:bg-indigo-900
+          "
+        >
+          A propos
+        </p>
+        <p
+          class="
+            text-center
+            rounded-3xl
+            px-4
+            cursor-pointer
+            hover:shadow-xl
+            hover:underline
+            hover:bg-white
+            focus:text-white
+            focus:shadow-2xl
+            focus:bg-indigo-900
+          "
+        >
+          Mentions Légales
+        </p>
+        <p
+          class="
+            text-center
+            rounded-3xl
+            px-4
+            cursor-pointer
+            hover:shadow-xl
+            hover:underline
+            hover:bg-white
+            focus:text-white
+            focus:shadow-2xl
+            focus:bg-indigo-900
+          "
+        >
+          Nous contacter
+        </p>
+      </footer>
+    </div>
+    <!-- Feuilles Javascripts -->
+    <script type="text/javascript" src="./homePage.js"></script>
+  </body>
+</html>

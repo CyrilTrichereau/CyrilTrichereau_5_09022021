@@ -1,19 +1,29 @@
 {
-  "name": "cyriltrichereau_5_09022021",
+  "name": "my-webpack-project",
   "version": "1.0.0",
-  "description": "Training OpenClassrooms: Web Developper. Project 5 : Build an e-commerce website",
+  "description": "My webpack project",
   "private": true,
   "scripts": {
-    "build": "webpack --mode=production",
-    "watch": "webpack --mode=development --watch",
-    "start": "webpack serve --mode=development --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:dev": "webpack --mode=development --node-env=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack serve --mode=development --node-env=development",
+    "serve": "webpack serve"
   },
   "author": "Cyril Trichereau",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
     "@webpack-cli/generators": "^2.1.0",
-    "webpack": "^5.36.2",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^8.1.1",
+    "css-loader": "^5.2.4",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "prettier": "^2.3.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.37.0",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   }
