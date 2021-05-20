@@ -105,13 +105,23 @@ for (let i in categoriesUrl) {
           } else {
           }
           // Add product to cart button is click, send to local storage
-          // formAddToCart buttonAddToCart productQuantity productOptions
+          // productDisplayBox buttonAddToCart productQuantity productOptions
+
+          let optionChosen = document.querySelector('#productOptions');
+          optionChosen.addEventListener ("click", function () {
+            let optionChosenSelected = document.querySelector('#productOptions option').selected;
+            console.log(optionChosenSelected);
+          });
+          ///boucle true false pour trouver quelle option est sélectionné
+
+
+
           document
             .querySelector('#buttonAddToCart')
             .addEventListener("click", function () {
               let valid = true;
               for (let input of document.querySelector(
-                ".form input, .form select"
+                "#productDisplayBox input, #productDisplayBox select"
               )) {
                 valid &= input.reportValidity();
                 if (!valid) {
@@ -119,8 +129,10 @@ for (let i in categoriesUrl) {
                 }
               }
               if(valid) {
-
-              }
+                let quantity = document.querySelector('#productQuantity').value;
+                let optionChosen = document.querySelector('#productOptions').value;
+                console.log(quantity + " " + optionChosen);
+              } 
             });
         } else {
         }
