@@ -78,7 +78,7 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
 
 /* HERATH FILLING */
 
-@keyframes fillingHeart {
+@keyframes fillingStar {
   0% {
     transform: translateY(0%);
   }
@@ -86,7 +86,7 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
     transform: translateY(-100%);
   }
 }
-.buttonHeart {
+.buttonStar {
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
@@ -95,8 +95,9 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
-.buttonHeartEmpty {
+.buttonStarEmpty {
   z-index: 3;
   width: 100%;
   height: auto;
@@ -106,14 +107,14 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   font-size: 2rem;
   color: #3A257E;
 }
-.buttonHeartEmpty:hover {
+.buttonStarEmpty:hover {
   opacity: 0;
   transition: opacity 250ms;
 }
-.buttonHeartEmpty:hover + .buttonHeartFillBackground {
-  animation: fillingHeart 700ms 50ms ease-in-out alternate both;
+.buttonStarEmpty:hover + .buttonStarFillBackground {
+  animation: fillingStar 700ms 50ms ease-in-out alternate both;
 }
-.buttonHeartFill {
+.buttonStarFill {
   z-index: 1;
   width: 100%;
   height: auto;
@@ -127,7 +128,7 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.buttonHeartFillBackground {
+.buttonStarFillBackground {
   width: 100%;
   height: 100%;
   z-index: 2;

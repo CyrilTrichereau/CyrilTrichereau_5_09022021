@@ -45,7 +45,7 @@ function displayCategory(arrayOfProducts) {
 // Function click on filter
 function clickOnFilter(filterIdHtml, url) {
   let buttonFilter = document.querySelector(filterIdHtml);
-  buttonFilter.addEventListener("click", function () {
+  buttonFilter.addEventListener("click", () => {
     fetch(url)
       .then((response) => {
         // If request OK, return file in JSON
@@ -63,7 +63,7 @@ function clickOnFilter(filterIdHtml, url) {
         // Temporary product to show : add the product name to local storage in productToShow
         document.querySelectorAll(".productDisplay").forEach((product) => {
           product.addEventListener("click", function () {
-            let productToAdd = this.dataset.id;
+            let productToAdd = {id: this.dataset.id};
             localStorage.setItem("productToShow", JSON.stringify(productToAdd));
           });
         });
@@ -93,7 +93,7 @@ fetch(categoriesUrl[0].url)
     targetPicture.src = responseJson[4].imageUrl;
     // redirect link to category
     let targetLink = document.querySelector("#goToCategoryCamera");
-    targetLink.addEventListener("click", function () {
+    targetLink.addEventListener("click", () => {
       displayCategory(responseJson);
     });
   });
