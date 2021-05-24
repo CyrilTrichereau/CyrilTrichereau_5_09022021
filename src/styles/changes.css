@@ -76,7 +76,7 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
 
 
 
-/* HERATH FILLING */
+/* STAR FILLING */
 
 @keyframes fillingStar {
   0% {
@@ -135,4 +135,625 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   position: absolute;
   background-color: #ffffff;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CART ANIMATION */
+
+.cartAnimationBox {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  margin: 1rem auto;
+}
+
+
+
+/*
+BALANCING CART
+*/
+
+@keyframes balancingCart {
+  0% {
+    transform: rotate(0deg);
+  }
+  2.5% {
+    transform: rotate(0deg);
+  }
+  5% {
+    transform: rotate(-10deg) translateY(3%);
+  }
+  10% {
+    transform: rotate(-45deg) translateY(12%);
+  }
+  15% {
+    transform: rotate(-35deg) translateY(10%);
+  }
+  20% {
+    transform: rotate(-45deg) translateY(12%);
+  }
+  25% {
+    transform: rotate(-35deg) translateY(10%);
+  }
+  30% {
+    transform: rotate(-45deg) translateY(12%);
+  }
+  35% {
+    transform: rotate(-35deg) translateY(10%);
+  }
+  40% {
+    transform: rotate(-45deg) translateY(12%);
+  }
+  45% {
+    transform: rotate(-35deg) translateY(10%) skewX(0deg);
+  }
+  50% {
+    transform: rotate(0deg) translateY(0%) skewX(-20deg);
+  }
+  70% {
+    transform: skewX(-20deg);
+  }
+  95% {
+    transform: skewX(0deg);
+  }
+}
+
+.containerCartAndWheels {
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom left;
+  animation: balancingCart 10000ms 1500ms ease-in-out both;
+}
+
+
+
+.logo {
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  position: absolute;
+  text-shadow: 0 0 4px black;
+}
+
+
+
+
+/*
+WHEELS ROTATING
+*/
+
+@keyframes rollingBackWheel {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+ 
+  95% {
+    opacity: 1;
+    transform: rotate(43200deg);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.wheel {
+  width: 14%;
+  height: 14%;
+  position: absolute;
+  top:68.5%;
+  border-radius: 50%;
+  box-shadow: 0 0 2px black;
+}
+.wheelWithBorder {
+  border: 2px dashed #563896;
+  box-sizing: border-box;
+  animation: rollingBackWheel 10000ms 500ms ease-in-out both;
+}
+.wheelFront {
+  left: 73%;
+  background-color: #8F5CFA;
+}
+
+.wheelBack {
+  left: 15.9%;
+  background-color: #B36E9B;
+}
+
+
+
+
+
+
+
+/*
+ROAD
+*/
+
+@keyframes roadMove {
+  10% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.6;
+    transform: scaleX(1.5) translateX(5%);
+  }
+  20% {
+    transform: scaleX(2) translateX( 2%);
+  }
+  25% {
+    transform: scaleX(1.8) translateX(5%);
+  }
+  30% {
+    transform: scaleX(2) translateX( 2%);
+  }
+  35% {
+    transform: scaleX(1.8) translateX( 5%);
+  }
+  40% {
+    transform: scaleX(2) translateX( 2%);
+  }
+  45% {
+    transform: scaleX(1.8) translateX( 5%);
+  }
+  50% {
+    transform: scaleX(2) translateX( 2%);
+  }
+  55% {
+    transform: scaleX(1.8) translateX( 7%);
+  }
+  60% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  65% {
+    transform: scaleX( 3.05) translateX( 8%);
+  }
+  70% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  75% {
+    transform: scaleX( 3.05) translateX( 8%);
+  }
+  80% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  85% {
+    transform: scaleX( 3.05) translateX( 8%);
+  }
+  90% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  95% {
+    opacity: 0.6;
+    transform: scaleX(2.4) translateX( 8%);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+}
+
+
+.road {
+  height: 4px;
+  position: absolute;
+  right: 14%;
+  background: linear-gradient(#4d3288, #5f3a52);
+  border-radius: 25px;
+ 
+  opacity: 0;
+  transform-origin: right;
+  animation: roadMove 10000ms 500ms ease-in-out both;
+}
+.roadLineTop {
+  width: 80%;
+  top:83%;
+}
+.roadLineMiddle {
+  width: 70%;
+  top:88%;
+}
+.roadLineBottom {
+  width: 60%;
+  top:93%;
+}
+
+
+/*
+SPEED STRINGS
+*/
+
+@keyframes speedStringMove {
+  55% {
+    transform: scaleX(1.8) translateX( 0%);
+    opacity: 0;
+  }
+  60% {
+    transform: scaleX( 3.2) translateX( 10%);
+    opacity: 0.4;
+  }
+  65% {
+    transform: scaleX( 3.05) translateX( 8%);
+  }
+  70% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  75% {
+    transform: scaleX( 3.05) translateX( 8%);
+  }
+  80% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  85% {
+    transform: scaleX( 3.05) translateX( 8%);
+  }
+  90% {
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+  95% {
+    opacity: 0.8;
+    transform: scaleX(2.4) translateX( 8%);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX( 3.2) translateX( 10%);
+  }
+}
+
+.speedString {
+  height: 4px;
+  position: absolute;
+  right: 90%;
+  background: linear-gradient(#4d3288, #5f3a52);
+  opacity: 0;
+  transform-origin: right;
+  animation: speedStringMove 10000ms 500ms ease-in-out both;
+}
+.speedStringTop {
+  width: 10%;
+  top:30%;
+}
+.speedStringMiddle {
+  width: 15%;
+  top:35%;
+}
+.speedStringBottom {
+  width: 20%;
+  top:40%;
+}
+
+
+
+/*
+CLOUD
+*/
+@keyframes cloudMove {
+  55% {
+    transform: scale(0.4) translateX(0%) translateY(0%);
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateX(-10%) translateY(-25%);
+  }
+}
+
+@keyframes cloudScale {
+  55% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+.cloud {
+  width: 200px;
+  height: 100px;
+  top: 0%;
+  right: 140%;
+  position: absolute;
+  opacity: 0;
+  animation: cloudMove 10000ms 500ms ease-in-out both;
+}
+
+.cloudPart {
+  position: absolute;
+  top: 50%;
+  border-radius: 50px;
+  background: #ffffff;
+  animation: cloudScale 10000ms 500ms ease-in-out both;
+
+}
+.cloudPart1 {
+  height: 40%;
+  width: 20%;
+  top: 70%;
+  left: 0%;
+  border-top: 2px solid #4d3288;
+  border-left: 1px solid #4d3288;
+  border-bottom: 1px solid #4d3288;
+}
+.cloudPart2 {
+  height: 50%;
+  width: 25%;
+  top: 40%;
+  left: 10%;
+  border-top: 1px solid #4d3288;
+  border-left: 1px solid #4d3288;
+}
+.cloudPart3 {
+  height: 80%;
+  width: 40%;
+  top: 60%;
+  left: 15%;
+  border-bottom: 1px solid #4d3288;
+}
+.cloudPart4 {
+  height: 60%;
+  width: 30%;
+  top: 18%;
+  left: 27%;
+  border-top: 1px solid #4d3288;
+  border-left: 1px solid #4d3288;
+  border-right: 1px solid #4d3288;
+}
+.cloudPart5 {
+  height: 40%;
+  width: 20%;
+  top: 80%;
+  left: 50%;
+  border-bottom:1px solid #4d3288;
+}
+.cloudPart6 {
+  height: 50%;
+  width: 25%;
+  top: 45%;
+  left: 51%;
+  border-top: 1px solid #4d3288;
+}
+.cloudPart7 {
+  height: 40%;
+  width: 20%;
+  top: 65%;
+  left: 65%;
+  border-bottom: 1px solid #4d3288;
+}
+.cloudPart8 {
+  height: 30%;
+  width: 15%;
+  top: 55%;
+  left: 70%;
+  border-top: 1px solid #4d3288;
+  border-right: 1px solid #4d3288;
+}
+.cloudPart9 {
+  height: 24%;
+  width: 12%;
+  top: 69%;
+  left: 80%;
+  border-bottom: 1px solid #4d3288;
+  border-top: 1px solid #4d3288;
+  border-right: 1px solid #4d3288;
+}
+
+
+
+/*
+GRAVEL
+*/
+@keyframes gravelMove {
+  54% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  55% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  58% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+  59% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  60% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  63% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+  64% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  65% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  68% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+  69% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  70% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  73% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+  74% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  75% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  78% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+  79% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  80% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  83% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+  84% {
+    opacity: 0;
+    top: 83%;
+    left: 20%;
+  }
+  85% {
+    opacity: 1;
+    top: 83%;
+    left: 20%;
+  }
+  88% {
+    opacity: 0;
+    top: 53%;
+    left: 0%;
+  }
+}
+ 
+.gravel {
+  width: 3%;
+  height: 2%;
+  border-radius: 25px;
+  position: absolute;
+  opacity: 0;
+  top: 83%;
+  left: 20%;
+  background: linear-gradient(black, grey);
+  animation: gravelMove 10000ms 500ms ease-in-out both;
+}
+.gravel1 {
+  animation: gravelMove 10000ms 600ms ease-in-out both;
+}
+.gravel2 {
+  animation: gravelMove 10000ms 700ms ease-in-out both;
+}
+.gravel3 {
+  animation: gravelMove 10000ms 800ms ease-in-out both;
+}
+.gravel4 {
+  animation: gravelMove 10000ms 900ms ease-in-out both;
+}
+.gravel5 {
+  animation: gravelMove 10000ms 1000ms ease-in-out both;
+}
+
+
+/* Medai queries Cart Animation */
+
+
+@media screen and (max-width: 380px) {
+  .cartAnimationBox {
+    width: 70px;
+    height: 70px;
+    }
+    
+  .road {
+    height: 2px;
+  }
+  .speedString {
+    height: 2px;
+  }
+  .cloud {
+    display: none;
+  }
+  
+  .wheelWithBorder {
+    border: 1px dashed #563896;
+  }
+
+}
+
+@media screen and (min-width: 381px) and (max-width: 767px) {
+  .cartAnimationBox {
+    width: 100px;
+    height: 100px;
+    }
+    .road {
+      height: 3px;
+    }
+    .speedString {
+      height: 3px;
+    }
+    .cloud {
+      display: none;
+    }
+}
+
+
 
