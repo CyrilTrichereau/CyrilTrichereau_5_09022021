@@ -2,22 +2,63 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import { categoriesUrl, Product } from "../app.js";
+import { categoriesUrl, Product, refreshInCartQuantityLogo } from "../app.js";
 
 // -----------------------------
 // FUNCTIONS
 // -----------------------------
 
+// Send To Cart in local Storage Function
+function sendToCart(idOfProduct, optionOfProduct, quantityOfProduct) {
+  let listInCart = JSON.parse(localStorage.getItem("cart"));
+  let isProductAlreadyInCart = false;
+  if (listInCart != null) {
+    for (const product of listInCart) {
+      if (
+        product.id == idOfProduct &&
+        product.optionSelected == optionOfProduct
+      ) {
+        product.quantitySelected = Number(product.quantitySelected) + Number(quantityOfProduct);
+        isProductAlreadyInCart = true;
+        break;
+      } else {
+      }
+    }
+  } else {
+    listInCart = [];
+  }
+  if (isProductAlreadyInCart == false) {
+    listInCart.push({
+      id: idOfProduct,
+      optionSelected: optionOfProduct,
+      quantitySelected: quantityOfProduct,
+    });
+  } else {
+  }
+  localStorage.setItem("cart", JSON.stringify(listInCart));
+  refreshInCartQuantityLogo();
+}
+
 // -----------------------------
 // RUN SCRIPT
 // -----------------------------
 
+// -----------
+// Refresh numbers of products in cart for the cart logo in header
+// -----------
+refreshInCartQuantityLogo();
+
+// -----------
 //    --Redirect links
+// -----------
 
+// -----------
 //    --Favorites
+// -----------
 
+// -----------
 //    --fill it up product informations
-
+// -----------
 // Load product id saved in local storage
 let productToShow = localStorage.getItem("productToShow");
 if (productToShow == null) {
@@ -104,38 +145,68 @@ for (let i in categoriesUrl) {
             }
           } else {
           }
-          // Add product to cart button is click, send to local storage
-          // productDisplayBox buttonAddToCart productQuantity productOptions
-
-          let optionChosen = document.querySelector('#productOptions');
-          optionChosen.addEventListener ("click", function () {
-            let optionChosenSelected = document.querySelector('#productOptions option').selected;
-            console.log(optionChosenSelected);
-          });
-          ///boucle true false pour trouver quelle option est sélectionné
-
-
-
-          document
-            .querySelector('#buttonAddToCart')
-            .addEventListener("click", function () {
-              let valid = true;
-              for (let input of document.querySelector(
-                "#productDisplayBox input, #productDisplayBox select"
-              )) {
-                valid &= input.reportValidity();
-                if (!valid) {
-                  break;
-                }
-              }
-              if(valid) {
-                let quantity = document.querySelector('#productQuantity').value;
-                let optionChosen = document.querySelector('#productOptions').value;
-                console.log(quantity + " " + optionChosen);
-              } 
-            });
-        } else {
         }
+      }
+    });
+}
+// Add product to cart button is click, send to local storage
+// productDisplayBox
+// buttonAddToCart
+// productQuantity
+// productOptions
+
+// Listening quantity
+let quantityListened = 0;
+document
+  .querySelector("#productQuantity")
+  .addEventListener("change", (event) => {
+    quantityListened = event.target.value;
+  });
+// Listening options
+let optionListened = "";
+document
+  .querySelector("#productOptions")
+  .addEventListener("change", (event) => {
+    optionListened = event.target.value;
+  });
+
+// Send product to cart
+document
+  .querySelector("#buttonAddToCart")
+  .addEventListener("click", (event) => {
+    sendToCart(productToShow.id, optionListened, quantityListened);
+  });
+
+
+
+
+
+function test() {
+  optionChosen.addEventListener("click", function () {
+    let optionChosenSelected = document.querySelector(
+      "#productOptions option"
+    ).selected;
+    console.log(optionChosenSelected);
+  });
+  ///boucle true false pour trouver quelle option est sélectionné
+
+  document
+    .querySelector("#buttonAddToCart")
+    .addEventListener("click", function () {
+      let valid = true;
+      for (let input of document.querySelector(
+        "#productDisplayBox input, #productDisplayBox select"
+      )) {
+        valid &= input.reportValidity();
+        if (!valid) {
+          console.log("error");
+          break;
+        }
+      }
+      if (valid) {
+        let quantity = document.querySelector("#productQuantity").value;
+        let optionChosen = document.querySelector("#productOptions").value;
+        console.log(quantity + " " + optionChosen);
       }
     });
 }

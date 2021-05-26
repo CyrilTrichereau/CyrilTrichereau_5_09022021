@@ -2,11 +2,14 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import { categoriesUrl, Product } from "../app.js";
+import { categoriesUrl, Product, refreshInCartQuantityLogo } from "../app.js";
 
 // -----------------------------
 // FUNCTIONS
 // -----------------------------
+
+// Refresh numbers of products in cart for the cart logo in header
+refreshInCartQuantityLogo ();
 
 // Display objects from category array requested
 function displayCategory(arrayOfProducts) {

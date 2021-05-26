@@ -2,15 +2,23 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import { categoriesUrl, Product } from "../app.js";
+import { categoriesUrl, Product, refreshInCartQuantityLogo } from "../app.js";
 
 // -----------------------------
 // FUNCTIONS
 // -----------------------------
 
+function eraseProductListener() {
+  const eraserButton = document.querySelector(".productEraser");
+  console.log(eraserButton);
+}
+
 // -----------------------------
 // RUN SCRIPT
 // -----------------------------
+
+// Refresh numbers of products in cart for the cart logo in header
+refreshInCartQuantityLogo();
 
 //continuer ici à mettre à jour le code en intégrant ensuite une création html en prenant homepage en exemple
 //ensuite faire des validations de formulaire sur product page et cart
@@ -61,10 +69,8 @@ listCart.push({
 localStorage.setItem("cart", JSON.stringify(listCart));
 
 //
-
 // Load product id saved in local storage
 let productsInCart = localStorage.getItem("cart");
-console.log(productsInCart);
 if (productsInCart == null) {
   // -------
   // -------------------INSCRIRE UN MESSAGE DE PANIER VIDE
@@ -92,8 +98,8 @@ if (productsInCart == null) {
         })
         .then((responseJson) => {
           for (let i in responseJson) {
+            const indexArray = i;
             if (productTargeted.id == responseJson[i]._id) {
-              console.log(responseJson[i]);
               let target = document.querySelector("#productInCart");
               let product = new Product(responseJson[i]);
               let addOptionsToHtml = [];
@@ -282,6 +288,7 @@ if (productsInCart == null) {
                   <!-- ERASE -->
                   <p
                     class="
+                      productEraser
                       font-semibold
                       text-xs text-center text-indigo-900
                       bg-gray-100
@@ -299,7 +306,6 @@ if (productsInCart == null) {
                       transition-all
                       hover:scale-110
                     "
-                    id="productErase"
                   >
                     Supprimer
                   </p>
@@ -322,7 +328,6 @@ if (productsInCart == null) {
                   }
                 </p>
               </div>`;
-
             } else {
             }
           }
@@ -330,4 +335,4 @@ if (productsInCart == null) {
     }
   }
 }
-
+eraseProductListener();

@@ -10,7 +10,8 @@ const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
-  entry: {
+  entry: 
+  {
     homePage: "./src/js/homePage.js",
     productPage: "./src/js/productPage.js",
     cart: "./src/js/cart.js",
@@ -87,3 +88,4 @@ module.exports = () => {
   }
   return config;
 };
+
