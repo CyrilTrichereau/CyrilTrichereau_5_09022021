@@ -2,42 +2,54 @@
 // -----------------
 
 
+// -----------------
 // ARRAY
 // -----------------
 
+// ARRAY Categories with URL, name and options
 const categoriesUrl = [
   {
     name: "camera",
     url: "http://localhost:3000/api/cameras",
     optionsLabel: "Lentilles",
-    optionsCategory: "lenses"
+    optionsCategory: "lenses",
+    number: 0
   },
   {
     name: "teddy",
     url: "http://localhost:3000/api/teddies",
     optionsLabel: "Couleurs",
-    optionsCategory: "colors"
+    optionsCategory: "colors",
+    number: 1
   },
   {
     name: "furniture",
     url: "http://localhost:3000/api/furniture",
     optionsLabel: "Vernis",
-    optionsCategory: "varnish"
+    optionsCategory: "varnish",
+    number: 2
   }
 ];
 
 
-// FUNCTIONS
+// -----------------
+// CLASS OBJECT
 // -----------------
 
+// CLASS OBJECT Class for
 class Product {
   constructor(jsonProduct) {
     jsonProduct && Object.assign(this, jsonProduct);
   }
 };
 
+// -----------------
+// FUNCTIONS
+// -----------------
 
-// Refresh numbers of products in cart for the cart logo in header
+
+
+// FUNCTION Refresh numbers of products in cart for the cart logo in header
 function refreshInCartQuantityLogo () {
   let listInCart = localStorage.getItem("cart");
   if (listInCart == null || listInCart == 0) {
@@ -52,8 +64,19 @@ function refreshInCartQuantityLogo () {
   }
   }
 
+// FUNCTION Request Get for products
+  const fetchProducts = async (url) => {
+    try {
+      const response = await fetch(url);
+      return await response.json();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  
+
 
 // -------
 // EXPORTS
 // -------
-export {categoriesUrl, Product, refreshInCartQuantityLogo };
+export {categoriesUrl, Product, refreshInCartQuantityLogo, fetchProducts };

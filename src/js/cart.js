@@ -51,7 +51,7 @@ function testAddProductToCart() {
 
   localStorage.setItem("cart", JSON.stringify(listCart));
 }
-// testAddProductToCart();
+//  testAddProductToCart();
 
 // -----------------------------
 // -----------------------------
@@ -165,7 +165,6 @@ function createProductBoxes(responseJson, categoryName, productTargeted) {
     if (categoryName == category.name) {
       product.optionsLabel = category.optionsLabel;
       for (let options of (product[category.optionsCategory])) {
-        console.log(options)
         if (productTargeted.optionSelected == options) {
           addOptionsToHtml += `<option selected="selected" value="${options}">${options}</option>;`;
         } else {
@@ -178,14 +177,14 @@ function createProductBoxes(responseJson, categoryName, productTargeted) {
 
   let priceProductMultipliedByQuantity =
     productTargeted.quantitySelected * product.price;
-    
+
   // add the subtotal product to the general subtotal
   subTotalManagedWithProductBoxesCreation += priceProductMultipliedByQuantity;
 
   target.innerHTML += `          
     <div
     class="
-      product
+     product
       w-full
       max-w-790
       h-96
@@ -199,6 +198,7 @@ function createProductBoxes(responseJson, categoryName, productTargeted) {
       bg-white
       overflow-hidden
     "
+    id="listeningBoxes"
   >
     <!-- PRODUCT IMAGE -->
     <div class="h-full md:h-full w-full md:w-1/4 overflow-hidden">
@@ -361,15 +361,28 @@ function createProductBoxes(responseJson, categoryName, productTargeted) {
       ${priceProductMultipliedByQuantity.toLocaleString("fr") + " €"}
     </p>
   </div>`;
+  // listenChangesAndUpdateCart()
 }
+
 
 //
 // -----------------------------
-// FUNCTION Erase Product with eraser button inside product box
+// FUNCTION Listen changes on products showed in cart pages and update cart in local storage
 // -----------------------------
-function eraseProductListener() {
-  const eraserButton = document.querySelector(".productEraser");
-}
+const listenChangesAndUpdateCart = async () => {
+  document.querySelectorAll(".productEraser").forEach((product) => {
+    product.addEventListener("click", function () {
+      let cartUpdate = localStorage.getItem("cart")
+      for (let product of cartUpdate) {
+        if (product.id == this.dataset.id && product.optionSelected == this.optionSelected && product.quantitySelected == this.quantitySelected) {
+          product.unshift(cartUpdate).shift(cartUpdate)
+        }
+      }
+      localStorage.setItem("cart", JSON.stringify(cartUpdate));
+    });
+  });
+};
+
 
 // -----------------------------
 // -----------------------------
@@ -390,7 +403,6 @@ let subTotalManagedWithProductBoxesCreation = 0;
 // Ask local storage to pick up cart and if empty, transform the page in empty cart, else continue to run script
 const productsInCart = loadProductIdStoreInCart();
 
-subTotalManagedWithProductBoxesCreation;
 // Loop : for every product in cart, match the id, create a product box and fill with informations
 for (let i in productsInCart) {
   let productTargeted = productsInCart[i];
@@ -420,7 +432,7 @@ for (let i in productsInCart) {
       });
   }
 }
-eraseProductListener();
+
 
 const sendProductsOrderAndContact = async (body) => {
   try {

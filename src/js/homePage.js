@@ -2,25 +2,27 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import { categoriesUrl, Product, refreshInCartQuantityLogo } from "../app.js";
+import {
+  categoriesUrl,
+  Product,
+  refreshInCartQuantityLogo,
+  fetchProducts,
+} from "../app.js";
 
 // -----------------------------
 // FUNCTIONS
 // -----------------------------
 
-// Refresh numbers of products in cart for the cart logo in header
-refreshInCartQuantityLogo ();
-
-// Display objects from category array requested
-function displayCategory(arrayOfProducts) {
+// FUNCTION Display objects from category array requested
+const displayCategory = (arrayOfProducts) => {
   let target = document.querySelector("#categoryDisplayed");
   // erase products boxes displayed
   while (target.firstChild) {
     target.removeChild(target.firstChild);
   }
   // create products boxes from arrayOfProducts
-  for (let i in arrayOfProducts) {
-    let product = new Product(arrayOfProducts[i]);
+  for (let productInArray of arrayOfProducts) {
+    let product = new Product(productInArray);
     target.innerHTML += `<a
         href="./pages/productPage.html"
         class="productDisplay flex flex-col justify-center items-center max-w-xs rounded-3xl shadow-lg bg-white overflow-hidden m-2 my-4  cursor-pointer transform transition-all hover:scale-105 hover:shadow-xl focus:shadow-2xl productBoxHomePage" data-id=${
@@ -43,69 +45,70 @@ function displayCategory(arrayOfProducts) {
             </p>
       </a>`;
   }
-}
+};
 
-// Function click on filter
-function clickOnFilter(filterIdHtml, url) {
-  let buttonFilter = document.querySelector(filterIdHtml);
-  buttonFilter.addEventListener("click", () => {
-    fetch(url)
-      .then((response) => {
-        // If request OK, return file in JSON
-        if (response.ok) {
-          return response.json();
-        }
-        // If not, print an error message in console
-        else {
-          console.log("error with server");
-        }
-      })
-      .then((responseJson) => {
-        displayCategory(responseJson);
-
-        // Temporary product to show : add the product name to local storage in productToShow
-        document.querySelectorAll(".productDisplay").forEach((product) => {
-          product.addEventListener("click", function () {
-            let productToAdd = {id: this.dataset.id};
-            localStorage.setItem("productToShow", JSON.stringify(productToAdd));
-          });
-        });
-      });
+// FUNCTION Hero picture loading and create redirect link to category displayer with a category displayed
+const heroPictureAndCategoryDisplayed = async (
+  urlOfCategory,
+  productNumber,
+  categoryName
+) => {
+  const responseJson = await fetchProducts(urlOfCategory);
+  // loading hero picture
+  let targetPicture = document.querySelector("#heroPicture");
+  targetPicture.src = responseJson[productNumber].imageUrl;
+  // redirect link to category
+  let targetLink = document.querySelector("#goToCategoryCamera");
+  targetLink.addEventListener("click", () => {
+    displayCategory(responseJson);
+    storeProductToShow(categoryName);
   });
-}
+};
+
+// FUNCTION click on filter
+const clickOnFilter = async (filterIdHtml, url, categoryName) => {
+  let buttonFilter = document.querySelector(filterIdHtml);
+  buttonFilter.addEventListener("click", async () => {
+    const responseJson = await fetchProducts(url);
+    displayCategory(responseJson);
+    // Store in local storage ID and category of the productToShow
+    storeProductToShow(categoryName);
+  });
+};
+
+// FUNCTION Store product to show : Store in local storage ID and category of the productToShow
+const storeProductToShow = (categoryName) => {
+  document.querySelectorAll(".productDisplay").forEach((product) => {
+    product.addEventListener("click", function () {
+      let productToAdd = { id: this.dataset.id, category: categoryName };
+      localStorage.setItem("productToShow", JSON.stringify(productToAdd));
+    });
+  });
+};
 
 // -----------------------------
 // RUN SCRIPT
 // -----------------------------
 
-//    --hero picture loading and create redirect link to category displayer with a category displayed
-fetch(categoriesUrl[0].url)
-  .then((response) => {
-    // If request OK, return file in JSON
-    if (response.ok) {
-      return response.json();
-    }
-    // If not, print an error message in console
-    else {
-      console.log("error with server");
-    }
-  })
-  .then((responseJson) => {
-    // loading hero picture
-    let targetPicture = document.querySelector("#heroPicture");
-    targetPicture.src = responseJson[4].imageUrl;
-    // redirect link to category
-    let targetLink = document.querySelector("#goToCategoryCamera");
-    targetLink.addEventListener("click", () => {
-      displayCategory(responseJson);
-    });
-  });
+// Refresh numbers of products in cart for the cart logo in header
+refreshInCartQuantityLogo();
 
-//    --listen click on filter and create products boxes with informations from responseObject
-clickOnFilter("#buttonTeddyFilter", categoriesUrl[1].url);
-clickOnFilter("#buttonCameraFilter", categoriesUrl[0].url);
-clickOnFilter("#buttonFurnitureFilter", categoriesUrl[2].url);
+// Hero picture loading and create redirect link to category displayer with a category displayed
+heroPictureAndCategoryDisplayed(categoriesUrl[0].url, 4, categoriesUrl[0].name);
 
-//    --listen the cart local storage to update the numbers of products
-
-//    --save product id to local storage for product page
+// Listen click on filter and create products boxes with informations from responseObject
+clickOnFilter(
+  "#buttonTeddyFilter",
+  categoriesUrl[1].url,
+  categoriesUrl[1].name
+);
+clickOnFilter(
+  "#buttonCameraFilter",
+  categoriesUrl[0].url,
+  categoriesUrl[0].name
+);
+clickOnFilter(
+  "#buttonFurnitureFilter",
+  categoriesUrl[2].url,
+  categoriesUrl[2].name
+);

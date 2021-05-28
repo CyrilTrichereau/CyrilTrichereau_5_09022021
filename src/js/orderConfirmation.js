@@ -17,7 +17,7 @@ const getOrderConfirmation = () => {
   }
 };
 
-// FUNCTION Error If No Oredr Confirmation Informations In Local Storage
+// FUNCTION Error If No Order Confirmation Informations In Local Storage
 const errorWithConfirmation = () => {
   document.querySelector("#titleOrderConfirmation").textContent =
     "Erreur dans la commande";
