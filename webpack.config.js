@@ -10,8 +10,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
-  entry: 
-  {
+  entry: {
     homePage: "./src/js/homePage.js",
     productPage: "./src/js/productPage.js",
     cart: "./src/js/cart.js",
@@ -59,11 +58,20 @@ const config = {
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
+  experiments: {
+    topLevelAwait: true
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/i,
-        loader: "babel-loader",
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            plugins: ["@babel/plugin-syntax-top-level-await"],
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -88,4 +96,3 @@ module.exports = () => {
   }
   return config;
 };
-

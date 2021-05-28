@@ -164,8 +164,10 @@
             ></i>
           </div>
 
-          <!-- BASKET -->
-          <div
+          <!-- CART (BASKET) -->
+          <a
+            href="./cart.html"
+            alt="Aller vers le panier"
             class="
               cart
               flex
@@ -202,7 +204,7 @@
               "
               id="inCartQuantity"
             ></p>
-          </div>
+          </a>
           <!-- ACCOUNT -->
           <div
             class="
@@ -323,14 +325,21 @@
         </div>
 
         <!-- PAGE TITLE -->
-        <h1 class="my-4 px-6 text-4xl font-black text-center text-indigo-900">
+        <h1
+          class="my-4 px-6 text-4xl font-black text-center text-indigo-900"
+          id="titleOrderConfirmation"
+        >
           Confirmation de commande
         </h1>
 
         <!-- ORINOCO CART ANIMATION -->
-        <div class="cartAnimationBox">
+        <div class="cartAnimationBox" id="cartAnimationOrderConfirmation">
           <div class="containerCartAndWheels">
-            <img src="../images/logoOrinoco.png" alt="logo Orinoco" class="logo" />
+            <img
+              src="../images/logoOrinoco.png"
+              alt="logo Orinoco"
+              class="logo"
+            />
             <div class="wheel wheelWithoutBorder wheelFront"></div>
             <div class="wheel wheelWithoutBorder wheelBack"></div>
             <div class="wheel wheelWithBorder wheelFront"></div>
@@ -366,7 +375,10 @@
             overflow-hidden
           "
         >
-          <p class="w-5/6 text-3xl font-black text-center">
+          <p
+            class="w-5/6 text-3xl font-black text-center"
+            id="subtitleOrderConfirmation"
+          >
             Merci d'avoir commandé chez
             <span class="textLogo text-4xl">Orinoco</span>
             !
@@ -380,12 +392,13 @@
               text-center text-indigo-900
               italic
             "
+            id="paragraphOrderConfirmation"
           >
             Votre commande numéro
-            <span id="orderNumber" class="font-bold">dsf1256qdsf589f</span>
-            d'un montant de
-            <span id="orderPrice" class="font-bold">235615</span>
-            € vous sera livrée bientôt !
+            <span id="orderNumber" class="font-bold"></span>
+            d'un montant total de
+            <span id="orderPrice" class="font-bold"></span>
+             vous sera livrée bientôt !
             <br />
             Un email vous sera envoyé dans les minutes à venir afin de vous
             résumer votre commande.
@@ -443,7 +456,8 @@
         >
           Mentions Légales
         </p>
-        <p
+        <a
+          href="mailto:contact@orinoco.fr"
           class="
             text-center
             rounded-3xl
@@ -458,7 +472,7 @@
           "
         >
           Nous contacter
-        </p>
+        </a>
       </footer>
     </div>
     <!-- Feuilles Javascripts -->

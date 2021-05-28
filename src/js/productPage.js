@@ -156,7 +156,7 @@ for (let i in categoriesUrl) {
 // productOptions
 
 // Listening quantity
-let quantityListened = 0;
+let quantityListened = 1;
 document
   .querySelector("#productQuantity")
   .addEventListener("change", (event) => {
@@ -173,7 +173,7 @@ document
 // Send product to cart
 document
   .querySelector("#buttonAddToCart")
-  .addEventListener("click", (event) => {
+  .addEventListener("click", () => {
     sendToCart(productToShow.id, optionListened, quantityListened);
   });
 
@@ -210,3 +210,61 @@ function test() {
       }
     });
 }
+
+
+
+
+
+// const body = {
+//   products: ["5be9c4c71c9d440000a730e9", "5be9bc241c9d440000a730e7"],
+//   contact: {
+//     firstName: "ssd",
+//     lastName: "efdsf",
+//     address: "12 rue du puits",
+//     city: "deniddf",
+//     email: "zSDG@gmail.com",
+//   },
+// };
+
+
+
+// // const sendOrder = async function () {
+//   try {
+//     let response = await fetch("http://localhost:3000/api/cameras/order", {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(body),
+//     })
+//     if (response.ok) {
+//       let data = await response.json()
+//     }
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
+
+// // sendOrder()
+
+// fetch("http://localhost:3000/api/cameras/order", {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(body),
+//     })
+//     .then ((response) => {
+//       console.log(response)
+//       return response.json()
+//     })
+//     .then ((responseJson) => {
+//       console.log(responseJson)
+//       localStorage.setItem("orderConfirmation", responseJson);
+//       return responseJson
+//     })
+ 
+
+
