@@ -7,13 +7,24 @@ import {
   Product,
   refreshInCartQuantityLogo,
   fetchProducts,
+  getCart,
+  updateCart,
+  addClasses,
+  setAttributes,
+  newDiv,
+  newHtmlTag,
+  newHtmlText,
 } from "../app.js";
 
+//
 // -----------------------------
 // FUNCTIONS
 // -----------------------------
 
+//
+// -----------------------------
 // FUNCTION Load Product To Show from local storage
+// -----------------------------
 const getProductToShow = () => {
   let product = localStorage.getItem("productToShow");
   if (product == null) {
@@ -21,24 +32,28 @@ const getProductToShow = () => {
     window.location = "../index.html";
   } else {
     product = JSON.parse(product);
-    return product
+    return product;
   }
 };
 
-// FUNCTION Get product informations with his id store inj local storage and apply informations in page
-const getProductInformationWithIdAndApplyInformations = async (productToShow, categoriesOfUrl) => {
+//
+// -----------------------------
+// FUNCTION Get product informations with his id store in local storage and apply informations in page
+// -----------------------------
+const getProductInformationWithIdAndApplyInformations = async (
+  productToShow,
+  categoriesOfUrl
+) => {
   let responseJson;
   // Loop to get the right category with url with category of product to show from local storage
   for (let categoryFromcategoriesUrl of categoriesOfUrl) {
-    console.log(categoryFromcategoriesUrl.name);
-    console.log(productToShow.category);
     if (productToShow.category == categoryFromcategoriesUrl.name) {
-      console.log(categoryFromcategoriesUrl.url);
-      responseJson = await fetchProducts(categoryFromcategoriesUrl.url + "/" + productToShow.id);
-      console.log(responseJson)
+      responseJson = await fetchProducts(
+        categoryFromcategoriesUrl.url + "/" + productToShow.id
+      );
+      urlOfProduct = categoryFromcategoriesUrl.url + "/" + productToShow.id;
     }
   }
-  console.log(responseJson);
   // Apply informations from the server response
   document.querySelector("#productPicture").src = responseJson.imageUrl;
   document.querySelector("#productPicture").alt =
@@ -99,8 +114,16 @@ const getProductInformationWithIdAndApplyInformations = async (productToShow, ca
   }
 };
 
+//
+// -----------------------------
 // FUNCTION Send product to cart in local storage
-function sendToCart(idOfProduct, optionOfProduct, quantityOfProduct) {
+// -----------------------------
+const sendToCart = (
+  idOfProduct,
+  optionOfProduct,
+  quantityOfProduct,
+  category
+) => {
   let listInCart = JSON.parse(localStorage.getItem("cart"));
   let isProductAlreadyInCart = false;
   if (listInCart != null) {
@@ -124,12 +147,14 @@ function sendToCart(idOfProduct, optionOfProduct, quantityOfProduct) {
       id: idOfProduct,
       optionSelected: optionOfProduct,
       quantitySelected: quantityOfProduct,
+      url: urlOfProduct,
+      category: category,
     });
   } else {
   }
   localStorage.setItem("cart", JSON.stringify(listInCart));
   refreshInCartQuantityLogo();
-}
+};
 
 // -----------------------------
 // RUN SCRIPT
@@ -140,10 +165,13 @@ refreshInCartQuantityLogo();
 
 // Load product id and category saved in local storage
 let productToShowInformations = getProductToShow();
-console.log(productToShowInformations);
 
 // Get product informations with his id store in local storage and apply informations in page
-getProductInformationWithIdAndApplyInformations(productToShowInformations, categoriesUrl);
+let urlOfProduct;
+getProductInformationWithIdAndApplyInformations(
+  productToShowInformations,
+  categoriesUrl
+);
 
 // Listening quantity
 let quantityListened = 1;
@@ -162,5 +190,10 @@ document
 
 // Send product to cart
 document.querySelector("#buttonAddToCart").addEventListener("click", () => {
-  sendToCart(productToShowInformations.id, optionListened, quantityListened);
+  sendToCart(
+    productToShowInformations.id,
+    optionListened,
+    quantityListened,
+    productToShowInformations.category
+  );
 });

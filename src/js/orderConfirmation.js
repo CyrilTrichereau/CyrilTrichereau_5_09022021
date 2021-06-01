@@ -2,7 +2,19 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import { categoriesUrl, Product, refreshInCartQuantityLogo } from "../app.js";
+import {
+  categoriesUrl,
+  Product,
+  refreshInCartQuantityLogo,
+  fetchProducts,
+  getCart,
+  updateCart,
+  addClasses,
+  setAttributes,
+  newDiv,
+  newHtmlTag,
+  newHtmlText,
+} from "../app.js";
 
 // -----------------------------
 // FUNCTIONS
@@ -24,7 +36,7 @@ const errorWithConfirmation = () => {
 
   document.querySelector(
     "#cartAnimationOrderConfirmation"
-  ).innerHTML = `<i class="
+  ).innerHTML = /* html */ `<i class="
     far 
     fa-sad-cry 
     sadIcon
@@ -36,7 +48,9 @@ const errorWithConfirmation = () => {
   document.querySelector("#subtitleOrderConfirmation").textContent =
     "Merci de retenter de nouveau votre chance !";
 
-  document.querySelector("#paragraphOrderConfirmation").innerHTML = `<p
+  document.querySelector(
+    "#paragraphOrderConfirmation"
+  ).innerHTML = /* html */ `<p
     class="
       w-full
       text-1xl
@@ -84,7 +98,7 @@ const errorWithConfirmation = () => {
     N'hésitez pas à contacter notre service client en cas de récidive !
     </p>
   </a>
-`
+`;
 };
 
 // FUNCTION Update Order Confirmation Number And Total Price On Page
@@ -95,9 +109,7 @@ const updateInformationsOnPage = (orderConfirmation) => {
   // Calculate total price
   let totalOrderPrice = 0;
   for (let productPrice of orderConfirmation.products) {
-    console.log(productPrice);
     totalOrderPrice += productPrice.price;
-    console.log(totalOrderPrice);
   }
   document.querySelector("#orderPrice").textContent =
     totalOrderPrice.toLocaleString("fr") + " €";
