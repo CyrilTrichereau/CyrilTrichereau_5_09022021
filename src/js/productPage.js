@@ -14,13 +14,32 @@ import {
   newDiv,
   newHtmlTag,
   newHtmlText,
+  eraseChildBoxes,
 } from "../app.js";
 
-//
-// -----------------------------
-// FUNCTIONS
-// -----------------------------
+// ----------------------------------------------
+// ----------------------------------------------
+// -------------   ARRAY AND OBJECT -------------
+// ----------------------------------------------
+// ----------------------------------------------
 
+// List of classes from Tailwind
+const classList = {
+  addedToCartBox: [
+    "addedToCart",
+    "addedToCartMove",
+    "font-bold",
+    "text-2xl",
+    "text-center",
+    "mb-4"
+  ],
+}
+
+// ---------------------------------------
+// ---------------------------------------
+// -------------   FUNCTIONS -------------
+// ---------------------------------------
+// ---------------------------------------
 //
 // -----------------------------
 // FUNCTION Load Product To Show from local storage
@@ -154,11 +173,25 @@ const sendToCart = (
   }
   localStorage.setItem("cart", JSON.stringify(listInCart));
   refreshInCartQuantityLogo();
+  showAddedToCart()
 };
+//
+// -----------------------------
+  // FUNCTION Show "added to cart"
+// -----------------------------
+const showAddedToCart = () => {
+let addedToCart = document.querySelector("#productAddedToCart")
+eraseChildBoxes("#productAddedToCart");
+let addedToCartBox = newHtmlText ("p", classList.addedToCartBox, "Produit ajouté !")
+addedToCart.appendChild(addedToCartBox)
+}
 
-// -----------------------------
-// RUN SCRIPT
-// -----------------------------
+
+// ---------------------------------------
+// ---------------------------------------
+// ------------- RUN SCRIPT --------------
+// ---------------------------------------
+// ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo, in header
 refreshInCartQuantityLogo();

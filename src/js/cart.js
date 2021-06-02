@@ -14,6 +14,7 @@ import {
   newDiv,
   newHtmlTag,
   newHtmlText,
+  eraseChildBoxes,
 } from "../app.js";
 
 //// -----------------------------
@@ -75,7 +76,7 @@ const testAddProductToCart = () => {
 
   localStorage.setItem("cart", JSON.stringify(listCart));
 };
-// testAddProductToCart();
+//  testAddProductToCart();
 
 // -----------------------------
 // -----------------------------
@@ -156,10 +157,12 @@ const classList = {
     "font-semibold",
     "rounded-2xl",
     "p-1",
+    "px-4",
     "bg-gray-100",
+    "outline-none",
+    "rounded-3xl",
     "hover:shadow-xl",
     "hover:bg-gray-200",
-    "rounded-3xl",
     "focus:text-white",
     "focus:shadow-2xl",
     "focus:bg-indigo-900",
@@ -186,10 +189,12 @@ const classList = {
     "font-semibold",
     "rounded-2xl",
     "p-1",
+    "w-14",
     "bg-gray-100",
+    "rounded-3xl",
+    "outline-none",
     "hover:shadow-xl",
     "hover:bg-gray-200",
-    "rounded-3xl",
     "focus:text-white",
     "focus:shadow-2xl",
     "focus:bg-indigo-900",
@@ -628,23 +633,52 @@ const listeningSubmitButton = () => {
       body.contact.email = document.querySelector("#email").value;
 
       let listCart = getCart();
-      for (let i in listCart) {
-        body.products.push(listCart[i].id);
+      if (listCart != null) {
+        if (onlyForDemoTestValidityCart(listCart)) {
+          for (let i in listCart) {
+            body.products.push(listCart[i].id);
+          }
+          SendOrderAndStoreResponse(body);
+        }
+      } else {
+        alert(
+          "Votre panier est vide... ! Seules les commandes contenant des produits peuvent être validées."
+        );
+        return;
       }
-      SendOrderAndStoreResponse(body);
     }
   });
 };
 
+//
 // -----------------------------
+// FUNCTION -- ONLY FOR DEMO -- Test validity of cart : only camera and only quantity 1
 // -----------------------------
-// -----------------------------
-// -----------------------------
-// RUN SCRIPT
-// -----------------------------
-// -----------------------------
-// -----------------------------
-// -----------------------------
+
+const onlyForDemoTestValidityCart = (responseCart) => {
+  let validityCart = true;
+  for (let product of responseCart) {
+    if (product.category != "camera") {
+      alert(
+        "Seul les produits de la catégorie appareil photo peuvent être validé pour cette démo"
+      );
+      validityCart = false;
+      return;
+    }
+    if (product.quantitySelected != 1) {
+      alert("Pour cette démo, la quantité ne peut être configuré que sur 1");
+      validityCart = false;
+      return;
+    }
+  }
+  return validityCart;
+};
+
+// ---------------------------------------
+// ---------------------------------------
+// ------------- RUN SCRIPT --------------
+// ---------------------------------------
+// ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo in header
 refreshInCartQuantityLogo();

@@ -1,111 +1,145 @@
-
 @font-face {
-  font-family: 'belligerent_madnessregular';
-  src: url('../fonts/belligerent-webfont.eot');
-  src: url('../fonts/belligerent-webfont.eot') format('embedded-opentype'),
-       url('../fonts/belligerent-webfont.woff') format('woff'),
-       url('../fonts/belligerent-webfont.ttf') format('truetype'),
-       url('../fonts/belligerent-webfont.svg#belligerent_madnessregular') format('svg');
+  font-family: "belligerent_madnessregular";
+  src: url("../fonts/belligerent-webfont.eot");
+  src: url("../fonts/belligerent-webfont.eot") format("embedded-opentype"),
+    url("../fonts/belligerent-webfont.woff") format("woff"),
+    url("../fonts/belligerent-webfont.ttf") format("truetype"),
+    url("../fonts/belligerent-webfont.svg#belligerent_madnessregular")
+      format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
 .textLogo {
-  font-family: 'belligerent_madnessregular';
+  font-family: "belligerent_madnessregular";
 }
 
 body {
-  font-family:'nunito';
+  font-family: "nunito";
 }
 
 /* ADD CLASS */
-@media screen and (min-width: 1024px)
-{
-.h-100 {
-  height: 32rem;
-}
+@media screen and (min-width: 1024px) {
+  .h-100 {
+    height: 32rem;
+  }
 }
 
 .max-w-140 {
-max-width: 140px;
+  max-width: 140px;
 }
 .max-w-790 {
-max-width: 790px;
+  max-width: 790px;
 }
 .max-w-1200 {
-max-width: 1200px;
+  max-width: 1200px;
 }
 
 .max-w-1600 {
-max-width: 1600px;
+  max-width: 1600px;
 }
 
+/* Added to cart styles */
 
+@keyframes justPassing {
+  0% {
+    transform: translateY(150%);
+  }
+  15% {
+    transform: translateY(0%);
+  }
+  85% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 0;
+  }
+}
 
-
-
-
-
-
-
-
-
-/* Sad Icon gradient color */
-/* In cart page */
-
-.sadIcon {
-  background-image: linear-gradient(45deg,#E58800, #826AFF);
+.addedToCart {
+  background-image: linear-gradient(45deg, #e58800, #826aff);
   background-clip: text;
   text-fill-color: transparent;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
+
+  transform: translateY(150%);
+}
+.addedToCartMove {
+  animation: justPassing 5000ms ease-in-out both;
 }
 
+/* Sad Icon gradient color */
+/* In cart page */
 
-
-
-
-
-
-
+.sadIcon {
+  background-image: linear-gradient(45deg, #e58800, #826aff);
+  background-clip: text;
+  text-fill-color: transparent;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
 
 /* INVALID INPUT */
 
 @keyframes headshake {
-25% {
+  25% {
     /* droite */
     transform: translateX(1%);
-}
-75% {
+  }
+  75% {
     /* gauche */
     transform: translateX(-1%);
-} 
+  }
+}
+
+.formRow {
+  border: 1px solid #3a257e;
 }
 
 .formRow input {
-background-color: white;
+  background-color: #F3F4F6;
 }
 
-.formRow input:active, input:focus {
-background-color: white;
-}
-.formRow  input:not(:focus) input:not(placeholder-shown) input:invalid {
-background: #B91C1C;
-color: white;
-animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
+.formRow input:not(:placeholder-shown) {
+  background-color: white;
 }
 
+.formRow input:active,
+input:focus {
+  background-color: white;
+  outline: none;
+}
 
+.formRow input:valid {
+  color: rgba(6, 95, 70);
+}
 
+.formRow input:not(:focus):valid ~ .validCross {
+  opacity: 1;
+}
 
+.formRow input:not(:valid){
+  color: rgba(153, 27, 27);
+}
 
-
-
-
+.formRow input:not(:focus):not(:placeholder-shown):invalid {
+  background: #b91c1c;
+  color: white;
+  animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 3;
+}
+.formRow input:not(:focus):not(:placeholder-shown):invalid ~ .invalidCross{
+  opacity: 1;
+  animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 3;
+}
 
 /* STAR FILLING */
 
@@ -136,7 +170,7 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   position: absolute;
   text-align: center;
   font-size: 2rem;
-  color: #3A257E;
+  color: #3a257e;
 }
 .buttonStarEmpty:hover {
   opacity: 0;
@@ -152,9 +186,9 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   position: absolute;
   font-size: 2rem;
   text-align: center;
-  background: -moz-linear-gradient(#9356DC, #3A257E);
-  background: -webkit-linear-gradient(#9356DC, #3A257E);
-  background: linear-gradient(#9356DC, #3A257E);
+  background: -moz-linear-gradient(#9356dc, #3a257e);
+  background: -webkit-linear-gradient(#9356dc, #3a257e);
+  background: linear-gradient(#9356dc, #3a257e);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -167,27 +201,6 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   background-color: #ffffff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* CART ANIMATION */
 
 .cartAnimationBox {
@@ -196,8 +209,6 @@ animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 3;
   position: relative;
   margin: 1rem auto;
 }
-
-
 
 /*
 BALANCING CART
@@ -255,8 +266,6 @@ BALANCING CART
   animation: balancingCart 10000ms 1500ms ease-in-out both;
 }
 
-
-
 .logo {
   width: 100%;
   top: 0%;
@@ -264,9 +273,6 @@ BALANCING CART
   position: absolute;
   text-shadow: 0 0 4px black;
 }
-
-
-
 
 /*
 WHEELS ROTATING
@@ -280,7 +286,7 @@ WHEELS ROTATING
     opacity: 1;
     transform: rotate(0deg);
   }
- 
+
   95% {
     opacity: 1;
     transform: rotate(43200deg);
@@ -294,7 +300,7 @@ WHEELS ROTATING
   width: 14%;
   height: 14%;
   position: absolute;
-  top:68.5%;
+  top: 68.5%;
   border-radius: 50%;
   box-shadow: 0 0 2px black;
 }
@@ -305,19 +311,13 @@ WHEELS ROTATING
 }
 .wheelFront {
   left: 73%;
-  background-color: #8F5CFA;
+  background-color: #8f5cfa;
 }
 
 .wheelBack {
   left: 15.9%;
-  background-color: #B36E9B;
+  background-color: #b36e9b;
 }
-
-
-
-
-
-
 
 /*
 ROAD
@@ -332,60 +332,59 @@ ROAD
     transform: scaleX(1.5) translateX(5%);
   }
   20% {
-    transform: scaleX(2) translateX( 2%);
+    transform: scaleX(2) translateX(2%);
   }
   25% {
     transform: scaleX(1.8) translateX(5%);
   }
   30% {
-    transform: scaleX(2) translateX( 2%);
+    transform: scaleX(2) translateX(2%);
   }
   35% {
-    transform: scaleX(1.8) translateX( 5%);
+    transform: scaleX(1.8) translateX(5%);
   }
   40% {
-    transform: scaleX(2) translateX( 2%);
+    transform: scaleX(2) translateX(2%);
   }
   45% {
-    transform: scaleX(1.8) translateX( 5%);
+    transform: scaleX(1.8) translateX(5%);
   }
   50% {
-    transform: scaleX(2) translateX( 2%);
+    transform: scaleX(2) translateX(2%);
   }
   55% {
-    transform: scaleX(1.8) translateX( 7%);
+    transform: scaleX(1.8) translateX(7%);
   }
   60% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   65% {
-    transform: scaleX( 3.05) translateX( 8%);
+    transform: scaleX(3.05) translateX(8%);
   }
   70% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   75% {
-    transform: scaleX( 3.05) translateX( 8%);
+    transform: scaleX(3.05) translateX(8%);
   }
   80% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   85% {
-    transform: scaleX( 3.05) translateX( 8%);
+    transform: scaleX(3.05) translateX(8%);
   }
   90% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   95% {
     opacity: 0.6;
-    transform: scaleX(2.4) translateX( 8%);
+    transform: scaleX(2.4) translateX(8%);
   }
   100% {
     opacity: 0;
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
 }
-
 
 .road {
   height: 4px;
@@ -393,24 +392,23 @@ ROAD
   right: 14%;
   background: linear-gradient(#4d3288, #5f3a52);
   border-radius: 25px;
- 
+
   opacity: 0;
   transform-origin: right;
   animation: roadMove 10000ms 500ms ease-in-out both;
 }
 .roadLineTop {
   width: 80%;
-  top:83%;
+  top: 83%;
 }
 .roadLineMiddle {
   width: 70%;
-  top:88%;
+  top: 88%;
 }
 .roadLineBottom {
   width: 60%;
-  top:93%;
+  top: 93%;
 }
-
 
 /*
 SPEED STRINGS
@@ -418,38 +416,38 @@ SPEED STRINGS
 
 @keyframes speedStringMove {
   55% {
-    transform: scaleX(1.8) translateX( 0%);
+    transform: scaleX(1.8) translateX(0%);
     opacity: 0;
   }
   60% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
     opacity: 0.4;
   }
   65% {
-    transform: scaleX( 3.05) translateX( 8%);
+    transform: scaleX(3.05) translateX(8%);
   }
   70% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   75% {
-    transform: scaleX( 3.05) translateX( 8%);
+    transform: scaleX(3.05) translateX(8%);
   }
   80% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   85% {
-    transform: scaleX( 3.05) translateX( 8%);
+    transform: scaleX(3.05) translateX(8%);
   }
   90% {
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
   95% {
     opacity: 0.8;
-    transform: scaleX(2.4) translateX( 8%);
+    transform: scaleX(2.4) translateX(8%);
   }
   100% {
     opacity: 0;
-    transform: scaleX( 3.2) translateX( 10%);
+    transform: scaleX(3.2) translateX(10%);
   }
 }
 
@@ -464,18 +462,16 @@ SPEED STRINGS
 }
 .speedStringTop {
   width: 10%;
-  top:30%;
+  top: 30%;
 }
 .speedStringMiddle {
   width: 15%;
-  top:35%;
+  top: 35%;
 }
 .speedStringBottom {
   width: 20%;
-  top:40%;
+  top: 40%;
 }
-
-
 
 /*
 CLOUD
@@ -530,7 +526,6 @@ CLOUD
   border-radius: 50px;
   background: #ffffff;
   animation: cloudScale 10000ms 500ms ease-in-out both;
-
 }
 .cloudPart1 {
   height: 40%;
@@ -570,7 +565,7 @@ CLOUD
   width: 20%;
   top: 80%;
   left: 50%;
-  border-bottom:1px solid #4d3288;
+  border-bottom: 1px solid #4d3288;
 }
 .cloudPart6 {
   height: 50%;
@@ -603,8 +598,6 @@ CLOUD
   border-top: 1px solid #4d3288;
   border-right: 1px solid #4d3288;
 }
-
-
 
 /*
 GRAVEL
@@ -716,7 +709,7 @@ GRAVEL
     left: 0%;
   }
 }
- 
+
 .gravel {
   width: 3%;
   height: 2%;
@@ -744,16 +737,14 @@ GRAVEL
   animation: gravelMove 10000ms 1000ms ease-in-out both;
 }
 
-
 /* Medai queries Cart Animation */
-
 
 @media screen and (max-width: 380px) {
   .cartAnimationBox {
     width: 70px;
     height: 70px;
-    }
-    
+  }
+
   .road {
     height: 2px;
   }
@@ -763,28 +754,24 @@ GRAVEL
   .cloud {
     display: none;
   }
-  
+
   .wheelWithBorder {
     border: 1px dashed #563896;
   }
-
 }
 
 @media screen and (min-width: 381px) and (max-width: 767px) {
   .cartAnimationBox {
     width: 100px;
     height: 100px;
-    }
-    .road {
-      height: 3px;
-    }
-    .speedString {
-      height: 3px;
-    }
-    .cloud {
-      display: none;
-    }
+  }
+  .road {
+    height: 3px;
+  }
+  .speedString {
+    height: 3px;
+  }
+  .cloud {
+    display: none;
+  }
 }
-
-
-

@@ -536,6 +536,7 @@
                   items-center
                   rounded-md
                   overflow-hidden
+                  relative
                 "
               >
                 <label
@@ -549,19 +550,33 @@
                   name="firstName"
                   id="firstName"
                   placeholder="Michel"
-                  pattern="[a-zA-ZÀ-ÿ]{1,20}"
+                  pattern="[a-zA-ZÀ-ÿ\s.'-]{1,20}"
                   title="Prénom obligatoire"
                   required
-                  class="
-                    w-3/4
-                    py-1
-                    bg-gray-100
-                    text-left
-                    pl-3
-                    focus:bg-white
-                    active:bg-white
-                  "
+                  class="w-3/4 py-1 text-left pl-3"
                 />
+                <span
+                  class="
+                    fas
+                    fa-check
+                    validCross
+                    absolute
+                    right-2
+                    text-green-600 text-xl
+                    opacity-0
+                  "
+                ></span>
+                <span
+                  class="
+                    fas
+                    fa-times-circle
+                    invalidCross
+                    absolute
+                    right-2
+                    text-white text-xl
+                    opacity-0
+                  "
+                ></span>
               </div>
 
               <!-- LAST NAME -->
@@ -575,6 +590,7 @@
                   items-center
                   rounded-md
                   overflow-hidden
+                  relative
                 "
               >
                 <label
@@ -588,19 +604,33 @@
                   name="lastName"
                   id="lastName"
                   placeholder="DURAND"
-                  pattern="[a-zA-ZÀ-ÿ]{1,50}"
+                  pattern="[a-zA-ZÀ-ÿ\s.'-]{1,50}"
                   title="Nom obligatoire"
                   required
-                  class="
-                    w-3/4
-                    py-1
-                    bg-gray-100
-                    text-left
-                    pl-3
-                    focus:bg-white
-                    active:bg-white
-                  "
+                  class="w-3/4 py-1 text-left pl-3"
                 />
+                <span
+                  class="
+                    fas
+                    fa-check
+                    validCross
+                    absolute
+                    right-2
+                    text-green-600 text-xl
+                    opacity-0
+                  "
+                ></span>
+                <span
+                  class="
+                    fas
+                    fa-times-circle
+                    invalidCross
+                    absolute
+                    right-2
+                    text-white text-xl
+                    opacity-0
+                  "
+                ></span>
               </div>
 
               <!-- ADRESS -->
@@ -615,6 +645,7 @@
                   items-center
                   rounded-md
                   overflow-hidden
+                  relative
                 "
               >
                 <label
@@ -631,16 +662,30 @@
                   placeholder="13 avenue des Palmiers"
                   required
                   title="Adresse obligatoire"
-                  class="
-                    w-3/4
-                    py-1
-                    bg-gray-100
-                    text-left
-                    pl-3
-                    focus:bg-white
-                    active:bg-white
-                  "
+                  class="w-3/4 py-1 text-left pl-3"
                 />
+                <span
+                  class="
+                    fas
+                    fa-check
+                    validCross
+                    absolute
+                    right-2
+                    text-green-600 text-xl
+                    opacity-0
+                  "
+                ></span>
+                <span
+                  class="
+                    fas
+                    fa-times-circle
+                    invalidCross
+                    absolute
+                    right-2
+                    text-white text-xl
+                    opacity-0
+                  "
+                ></span>
               </div>
 
               <!-- CITY -->
@@ -655,6 +700,7 @@
                   items-center
                   rounded-md
                   overflow-hidden
+                  relative
                 "
               >
                 <label
@@ -668,19 +714,33 @@
                   name="city"
                   id="city"
                   placeholder="Nice"
-                  pattern="[a-zA-ZÀ-ÿ]{1,50}"
+                  pattern="[a-zA-ZÀ-ÿ\s.'-]{1,50}"
                   title="Ville obligatoire"
                   required
-                  class="
-                    w-3/4
-                    py-1
-                    bg-gray-100
-                    text-left
-                    pl-3
-                    focus:bg-white
-                    active:bg-white
-                  "
+                  class="w-3/4 py-1 text-left pl-3"
                 />
+                <span
+                  class="
+                    fas
+                    fa-check
+                    validCross
+                    absolute
+                    right-2
+                    text-green-600 text-xl
+                    opacity-0
+                  "
+                ></span>
+                <span
+                  class="
+                    fas
+                    fa-times-circle
+                    invalidCross
+                    absolute
+                    right-2
+                    text-white text-xl
+                    opacity-0
+                  "
+                ></span>
               </div>
 
               <!-- EMAIL -->
@@ -695,6 +755,7 @@
                   items-center
                   rounded-md
                   overflow-hidden
+                  relative
                 "
               >
                 <label
@@ -709,16 +770,30 @@
                   placeholder="michel.durand@gmail.com"
                   title="email obligatoire"
                   required
-                  class="
-                    w-3/4
-                    py-1
-                    bg-gray-100
-                    text-left
-                    pl-3
-                    focus:bg-white
-                    active:bg-white
-                  "
+                  class="w-3/4 py-1 text-left pl-3"
                 />
+                <span
+                  class="
+                    fas
+                    fa-check
+                    validCross
+                    absolute
+                    right-2
+                    text-green-600 text-xl
+                    opacity-0
+                  "
+                ></span>
+                <span
+                  class="
+                    fas
+                    fa-times-circle
+                    invalidCross
+                    absolute
+                    right-2
+                    text-white text-xl
+                    opacity-0
+                  "
+                ></span>
               </div>
 
               <!-- SUBMIT -->

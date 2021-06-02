@@ -347,7 +347,7 @@
               src=""
               alt=""
               id="productPicture"
-              class="w-full lg:w-auto lg:h-full object-cover"
+              class="w-full lg:1/2 lg:h-full object-cover"
             />
           </div>
           <!-- CONTENT PRODUCT -->
@@ -414,7 +414,17 @@
                   name="options"
                   id="productOptions"
                   required
-                  class="text-base font-semibold text-center rounded-2xl p-1"
+                  class="text-base 
+                  font-semibold 
+                  text-center 
+                  rounded-2xl 
+                  p-1
+                  outline-none
+                  hover:shadow-xl
+                  hover:border-gray-400
+                  focus:text-white
+                  focus:shadow-xl
+                  focus:bg-indigo-900"
                 >
                   <option value="">Choisissez une option</option>
                 </select>
@@ -469,6 +479,7 @@
                     focus:text-white
                     focus:shadow-2xl
                     focus:bg-indigo-900
+                    outline-none
                   "
                   step="1"
                   min="1"
@@ -480,29 +491,38 @@
                 />
               </div>
               <!-- ADD TO CART -->
-              <input
-                type="submit"
-                value="Ajouter au panier"
-                id="buttonAddToCart"
-                class="
-                  px-6
-                  font-semibold
-                  text-lg text-center text-indigo-900
-                  rounded-2xl
-                  p-1
-                  bg-gray-100
-                  cursor-pointer
-                  hover:shadow-xl
-                  hover:bg-gray-200
-                  rounded-3xl
-                  focus:text-white
-                  focus:shadow-2xl
-                  focus:bg-indigo-900
-                  transform
-                  transition-all
-                  hover:scale-110
-                "
-              />
+              <div>
+                <div class="overflow-hidden" id="productAddedToCart">
+                  <p class="addedToCart
+                  font-bold
+                  text-lg text-center">Produit ajouté !</p>
+                </div>
+                <input
+                  type="submit"
+                  value="Ajouter au panier"
+                  id="buttonAddToCart"
+                  class="
+                    px-6
+                    font-semibold
+                    text-lg text-center text-indigo-900
+                    rounded-2xl
+                    p-1
+                    bg-gray-100
+                    cursor-pointer
+                    hover:shadow-xl
+                    hover:bg-gray-200
+                    hover:scale-110
+                    rounded-3xl
+                    focus:text-white
+                    focus:shadow-2xl
+                    focus:bg-indigo-900
+                    active:text-indigo-900
+                    active:bg-white
+                    transform
+                    transition-all
+                  "
+                />
+              </div>
             </div>
 
             <!-- FIFTH ROW -->

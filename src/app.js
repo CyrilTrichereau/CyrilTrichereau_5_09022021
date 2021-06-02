@@ -1,10 +1,8 @@
-// ----------------- app.js
-// -----------------
-
-// -----------------
-// ARRAY
-// -----------------
-
+// ----------------------------------------------
+// ----------------------------------------------
+// -------------   ARRAY AND OBJECT -------------
+// ----------------------------------------------
+// ----------------------------------------------
 // ARRAY Categories with URL, name and options
 const categoriesUrl = [
   {
@@ -27,21 +25,18 @@ const categoriesUrl = [
   },
 ];
 
-// -----------------
-// CLASS OBJECT
-// -----------------
-
-// CLASS OBJECT Class for
+// CLASS OBJECT Class for products
 class Product {
   constructor(jsonProduct) {
     jsonProduct && Object.assign(this, jsonProduct);
   }
 }
 
-// -----------------
-// FUNCTIONS
-// -----------------
-
+// ----------------------------------------------
+// ----------------------------------------------
+// -------------   FUNCTIONS -------------
+// ----------------------------------------------
+// ----------------------------------------------
 //
 // -----------------------------
 // FUNCTION Refresh numbers of products in cart for the cart logo in header
@@ -121,7 +116,7 @@ const emptyCartMessage = () => {
     Retournez sur la page d'accueil afin de séléctionner des produits !
     </a>
     `;
-  document.querySelector("#productInCart").innerHTML += emptyCartMessage;
+  document.querySelector("#productInCart").innerHTML = emptyCartMessage;
 };
 
 //
@@ -197,6 +192,18 @@ const newHtmlText = (tag, classListTargeted, textToAdd) => {
   return htmlText;
 };
 
+//
+// -----------------------------
+// FUNCTION Erase child boxes from query selector target
+// -----------------------------
+const eraseChildBoxes = (querySelectorTargeted) => {
+  let target = document.querySelector(querySelectorTargeted);
+  // erase products boxes displayed
+  while (target.firstChild) {
+    target.removeChild(target.firstChild);
+  }
+};
+
 // -------
 // EXPORTS
 // -------
@@ -212,4 +219,5 @@ export {
   newDiv,
   newHtmlTag,
   newHtmlText,
+  eraseChildBoxes,
 };

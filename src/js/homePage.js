@@ -14,6 +14,7 @@ import {
   newDiv,
   newHtmlTag,
   newHtmlText,
+  eraseChildBoxes
 } from "../app.js";
 
 // ----------------------------------------------
@@ -42,6 +43,11 @@ const classList = {
     "hover:scale-105",
     "hover:shadow-xl",
     "focus:shadow-2xl",
+  ],
+  pictureBox: [
+    "h-60",
+    "w-full",
+    "object-cover",
   ],
   titleProduct: [
     "my-4",
@@ -76,18 +82,6 @@ const classList = {
 
 //
 // -----------------------------
-// FUNCTION Erase products boxes dsiplayed
-// -----------------------------
-const eraseProductsDisplayed = () => {
-  let target = document.querySelector("#categoryDisplayed");
-  // erase products boxes displayed
-  while (target.firstChild) {
-    target.removeChild(target.firstChild);
-  }
-};
-
-//
-// -----------------------------
 // FUNCTION Display objects from category array requested
 // -----------------------------
 const displayCategory = (arrayOfProducts, categoryName) => {
@@ -109,7 +103,7 @@ const displayCategory = (arrayOfProducts, categoryName) => {
     listeningClickOnProductBoxes(productBox, product._id, categoryName);
 
     // 2.1 - Create picture box and add in product box
-    let pictureBox = newHtmlTag("img", "");
+    let pictureBox = newHtmlTag("img", classList.pictureBox);
     setAttributes(
       [
         { name: "src", value: product.imageUrl },
@@ -171,7 +165,7 @@ const heroPictureAndCategoryDisplayed = async (
   // redirect link to category
   let targetLink = document.querySelector("#goToCategoryCamera");
   targetLink.addEventListener("click", () => {
-    eraseProductsDisplayed ()
+    eraseChildBoxes ("#categoryDisplayed")
     displayCategory(responseJson, categoryName);
   });
 };
@@ -184,7 +178,7 @@ const clickOnFilter = (filterIdHtml, url, categoryName) => {
   let buttonFilter = document.querySelector(filterIdHtml);
   buttonFilter.addEventListener("click", async () => {
     const responseJson = await fetchProducts(url);
-    eraseProductsDisplayed ()
+    eraseChildBoxes ("#categoryDisplayed")
     displayCategory(responseJson, categoryName);
   });
 };
@@ -206,9 +200,11 @@ const listeningClickOnProductBoxes = (
   });
 };
 
-// -----------------------------
-// RUN SCRIPT
-// -----------------------------
+// ---------------------------------------
+// ---------------------------------------
+// ------------- RUN SCRIPT --------------
+// ---------------------------------------
+// ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo in header
 refreshInCartQuantityLogo();

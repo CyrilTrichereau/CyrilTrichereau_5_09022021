@@ -14,22 +14,32 @@ import {
   newDiv,
   newHtmlTag,
   newHtmlText,
+  eraseChildBoxes,
 } from "../app.js";
 
-// -----------------------------
-// FUNCTIONS
+// ---------------------------------------
+// ---------------------------------------
+// -------------  FUNCTIONS --------------
+// ---------------------------------------
+// ---------------------------------------
+//
 // -----------------------------
 // FUNCTION Get Order Confirmation in Local Storage
-const getOrderConfirmation = () => {
+// -----------------------------
+const getOrderConfirmationAndDisplayOrderInformations = () => {
   const response = localStorage.getItem("orderConfirmation");
   if (response == null) {
     errorWithConfirmation();
   } else {
-    return JSON.parse(response);
+    const orderConfirmation = JSON.parse(response);
+    updateInformationsOnPage(orderConfirmation);
   }
 };
 
+//
+// -----------------------------
 // FUNCTION Error If No Order Confirmation Informations In Local Storage
+// -----------------------------
 const errorWithConfirmation = () => {
   document.querySelector("#titleOrderConfirmation").textContent =
     "Erreur dans la commande";
@@ -101,13 +111,16 @@ const errorWithConfirmation = () => {
 `;
 };
 
+//
+// -----------------------------
 // FUNCTION Update Order Confirmation Number And Total Price On Page
+// -----------------------------
 const updateInformationsOnPage = (orderConfirmation) => {
   // Update Order Confirmation Number
   document.querySelector("#orderNumber").textContent =
     orderConfirmation.orderId;
-  // Calculate total price
-  let totalOrderPrice = 0;
+  // Calculate total price (with 15€ of shipping cost)
+  let totalOrderPrice = 15;
   for (let productPrice of orderConfirmation.products) {
     totalOrderPrice += productPrice.price;
   }
@@ -115,21 +128,14 @@ const updateInformationsOnPage = (orderConfirmation) => {
     totalOrderPrice.toLocaleString("fr") + " €";
 };
 
-// -----------------------------
-// -----------------------------
-// -----------------------------
-// -----------------------------
-// RUN SCRIPT
-// -----------------------------
-// -----------------------------
-// -----------------------------
-// -----------------------------
+// ---------------------------------------
+// ---------------------------------------
+// ------------- RUN SCRIPT --------------
+// ---------------------------------------
+// ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo in header
 refreshInCartQuantityLogo();
 
-// Get the order confirmation informations on local storage
-const orderConfirmation = getOrderConfirmation();
-
-// And update the order confirmation number and total price on page
-updateInformationsOnPage(orderConfirmation);
+// Get the order confirmation informations on local storage and update the order confirmation number and total price on page
+getOrderConfirmationAndDisplayOrderInformations();
