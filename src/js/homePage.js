@@ -2,20 +2,7 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import {
-  categoriesUrl,
-  Product,
-  refreshInCartQuantityLogo,
-  fetchProducts,
-  getCart,
-  updateCart,
-  addClasses,
-  setAttributes,
-  newDiv,
-  newHtmlTag,
-  newHtmlText,
-  eraseChildBoxes,
-} from "../app.js";
+import * as moduleApp from "../app.js";
 
 // ----------------------------------------------
 // ----------------------------------------------
@@ -84,11 +71,11 @@ const displayCategory = (arrayOfProducts, categoryName) => {
   let target = document.querySelector("#categoryDisplayed");
   // create products boxes from arrayOfProducts
   for (let productInArray of arrayOfProducts) {
-    let product = new Product(productInArray);
+    let product = new moduleApp.Product(productInArray);
 
     // 1 - Create box for product
-    let productBox = newHtmlTag("a", classList.productBox);
-    setAttributes(
+    let productBox = moduleApp.newHtmlTag("a", classList.productBox);
+    moduleApp.setAttributes(
       [
         { name: "href", value: "./pages/productPage.html" },
         { name: "data-id", value: product._id },
@@ -99,8 +86,8 @@ const displayCategory = (arrayOfProducts, categoryName) => {
     listeningClickOnProductBoxes(productBox, product._id, categoryName);
 
     // 2.1 - Create picture box and add in product box
-    let pictureBox = newHtmlTag("img", classList.pictureBox);
-    setAttributes(
+    let pictureBox = moduleApp.newHtmlTag("img", classList.pictureBox);
+    moduleApp.setAttributes(
       [
         { name: "src", value: product.imageUrl },
         { name: "alt", value: "Image du produit: " + product.name },
@@ -110,11 +97,11 @@ const displayCategory = (arrayOfProducts, categoryName) => {
     productBox.appendChild(pictureBox);
 
     // 2.2 - Create title and add in product box
-    let titleProduct = newHtmlText("h4", classList.titleProduct, product.name);
+    let titleProduct = moduleApp.newHtmlText("h4", classList.titleProduct, product.name);
     productBox.appendChild(titleProduct);
 
     // 2.3 - Create price and add in product box
-    let priceProduct = newHtmlText(
+    let priceProduct = moduleApp.newHtmlText(
       "p",
       classList.priceProduct,
       product.price.toLocaleString("fr") + " €"
@@ -122,7 +109,7 @@ const displayCategory = (arrayOfProducts, categoryName) => {
     productBox.appendChild(priceProduct);
 
     // 2.4 - Create picture box and add in product box
-    let descriptionProduct = newHtmlText(
+    let descriptionProduct = moduleApp.newHtmlText(
       "p",
       classList.descriptionProduct,
       product.description
@@ -139,8 +126,8 @@ const displayCategory = (arrayOfProducts, categoryName) => {
 // FUNCTION Display all products when loading page
 // -----------------------------
 const displayAllProducts = async () => {
-  for (let category of categoriesUrl) {
-    const responseJson = await fetchProducts(category.url);
+  for (let category of moduleApp.categoriesUrl) {
+    const responseJson = await moduleApp.fetchProducts(category.url);
     displayCategory(responseJson, category.name);
   }
 };
@@ -154,14 +141,14 @@ const heroPictureAndCategoryDisplayed = async (
   productNumber,
   categoryName
 ) => {
-  const responseJson = await fetchProducts(urlOfCategory);
+  const responseJson = await moduleApp.fetchProducts(urlOfCategory);
   // loading hero picture
   let targetPicture = document.querySelector("#heroPicture");
   targetPicture.src = responseJson[productNumber].imageUrl;
   // redirect link to category
   let targetLink = document.querySelector("#goToCategoryCamera");
   targetLink.addEventListener("click", () => {
-    eraseChildBoxes("#categoryDisplayed");
+    moduleApp.eraseChildBoxes("#categoryDisplayed");
     displayCategory(responseJson, categoryName);
   });
 };
@@ -173,8 +160,8 @@ const heroPictureAndCategoryDisplayed = async (
 const clickOnFilter = (filterIdHtml, url, categoryName) => {
   let buttonFilter = document.querySelector(filterIdHtml);
   buttonFilter.addEventListener("click", async () => {
-    const responseJson = await fetchProducts(url);
-    eraseChildBoxes("#categoryDisplayed");
+    const responseJson = await moduleApp.fetchProducts(url);
+    moduleApp.eraseChildBoxes("#categoryDisplayed");
     displayCategory(responseJson, categoryName);
   });
 };
@@ -203,10 +190,10 @@ const listeningClickOnProductBoxes = (
 // ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo in header
-refreshInCartQuantityLogo();
+moduleApp.refreshInCartQuantityLogo();
 
 // Hero picture loading and create redirect link to category displayer with a category displayed
-heroPictureAndCategoryDisplayed(categoriesUrl[0].url, 4, categoriesUrl[0].name);
+heroPictureAndCategoryDisplayed(moduleApp.categoriesUrl[0].url, 4, moduleApp.categoriesUrl[0].name);
 
 // Display all products when loading page
 displayAllProducts();
@@ -214,16 +201,16 @@ displayAllProducts();
 // Listen click on filter and create products boxes with informations from responseObject
 clickOnFilter(
   "#buttonTeddyFilter",
-  categoriesUrl[1].url,
-  categoriesUrl[1].name
+  moduleApp.categoriesUrl[1].url,
+  moduleApp.categoriesUrl[1].name
 );
 clickOnFilter(
   "#buttonCameraFilter",
-  categoriesUrl[0].url,
-  categoriesUrl[0].name
+  moduleApp.categoriesUrl[0].url,
+  moduleApp.categoriesUrl[0].name
 );
 clickOnFilter(
   "#buttonFurnitureFilter",
-  categoriesUrl[2].url,
-  categoriesUrl[2].name
+  moduleApp.categoriesUrl[2].url,
+  moduleApp.categoriesUrl[2].name
 );

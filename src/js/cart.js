@@ -2,85 +2,7 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import {
-  categoriesUrl,
-  Product,
-  refreshInCartQuantityLogo,
-  fetchProducts,
-  getCart,
-  updateCart,
-  addClasses,
-  setAttributes,
-  newDiv,
-  newHtmlTag,
-  newHtmlText,
-  eraseChildBoxes,
-} from "../app.js";
-
-//// -----------------------------
-// -----------------------------
-// -----------------------------
-// -----------------------------
-// -----------------------------
-//   ROR TEST ADD ARRAY
-const testAddProductToCart = () => {
-  let listCart = localStorage.getItem("cart");
-  if (listCart != null) {
-    listCart = JSON.parse(listCart);
-  } else {
-    console.log("Cart empty");
-  }
-  listCart = [];
-  listCart.push({
-    id: "5beaaf2e1c9d440000a57d9a",
-    optionSelected: "Light Oak",
-    quantitySelected: 1,
-    category: "furniture",
-    url: "http://localhost:3000/api/furniture/5beaaf2e1c9d440000a57d9a",
-  });
-  listCart.push({
-    id: "5be9bc241c9d440000a730e7",
-    optionSelected: "25mm 4.5",
-    quantitySelected: 1,
-    category: "camera",
-    url: "http://localhost:3000/api/cameras/5be9bc241c9d440000a730e7",
-  });
-  listCart.push({
-    id: "5beaabe91c9d440000a57d96",
-    optionSelected: "Blue",
-    quantitySelected: 4,
-    category: "teddy",
-    url: "http://localhost:3000/api/teddies/5beaabe91c9d440000a57d96",
-  });
-  listCart.push({
-    id: "5be9c4c71c9d440000a730e9",
-    optionSelected: "35mm 1.8",
-    quantitySelected: 1,
-    category: "camera",
-    url: "http://localhost:3000/api/cameras/5be9c4c71c9d440000a730e9",
-  });
-  listCart.push({
-    id: "5beaadda1c9d440000a57d98",
-    optionSelected: "Dark Oak",
-    quantitySelected: 1,
-    category: "furniture",
-    url: "http://localhost:3000/api/furniture/5beaadda1c9d440000a57d98",
-  });
-  listCart.push({
-    id: "5beaa8bf1c9d440000a57d94",
-    optionSelected: "Pale brown",
-    quantitySelected: 1,
-    category: "teddy",
-    url: "http://localhost:3000/api/teddies/5beaa8bf1c9d440000a57d94",
-  });
-
-  localStorage.setItem("cart", JSON.stringify(listCart));
-};
-//  testAddProductToCart();
-
-// -----------------------------
-// -----------------------------
-// -----------------------------
+import * as moduleApp from "../app.js";
 
 // ----------------------------------------------
 // ----------------------------------------------
@@ -271,7 +193,7 @@ const refreshSubTotal = () => {
 // -----------------------------
 const requestProductsAndDisplay = async (productToRequest) => {
   for (let i in productToRequest) {
-    const responseFetch = await fetchProducts(productToRequest[i].url);
+    const responseFetch = await moduleApp.fetchProducts(productToRequest[i].url);
     let productTargeted = productToRequest[i];
     createCartProductBoxes(
       responseFetch,
@@ -301,19 +223,19 @@ const createCartProductBoxes = (
   productTargeted
 ) => {
   let target = document.querySelector("#productInCart");
-  let product = new Product(responseJson);
+  let product = new moduleApp.Product(responseJson);
 
   // Product Box
   let productBoxHtmlToAdd = document.createElement("div");
-  addClasses(classList.productBoxHtmlToAdd, productBoxHtmlToAdd);
+  moduleApp.addClasses(classList.productBoxHtmlToAdd, productBoxHtmlToAdd);
 
   // 1 - Product image box
   let pictureBox = document.createElement("div");
-  addClasses(classList.pictureBox, pictureBox);
+  moduleApp.addClasses(classList.pictureBox, pictureBox);
 
   // 1.1 - Product image box - Picture
   let picture = document.createElement("img");
-  addClasses(classList.picture, picture);
+  moduleApp.addClasses(classList.picture, picture);
   picture.src = product.imageUrl;
   picture.setAttribute("alt", "Image du produit : " + product.name);
   pictureBox.appendChild(picture);
@@ -321,17 +243,17 @@ const createCartProductBoxes = (
   // -----------------
   // 2 - Product content box
   let productContentBox = document.createElement("div");
-  addClasses(classList.productContentBox, productContentBox);
+  moduleApp.addClasses(classList.productContentBox, productContentBox);
 
   // 2.1 - Product content box - Title
   let productContentTitle = document.createElement("h4");
-  addClasses(classList.productContentTitle, productContentTitle);
+  moduleApp.addClasses(classList.productContentTitle, productContentTitle);
   productContentTitle.textContent = product.name;
   productContentBox.appendChild(productContentTitle);
 
   // 2.2 - Product content box - Specifications and quantity
   let productContentSpecificationsAndQuantity = document.createElement("div");
-  addClasses(
+  moduleApp.addClasses(
     classList.productContentSpecificationsAndQuantity,
     productContentSpecificationsAndQuantity
   );
@@ -339,7 +261,7 @@ const createCartProductBoxes = (
 
   // 2.2.1 - Product content box - Specifications and quantity - Specifications
   let productContentSpecifications = document.createElement("div");
-  addClasses(
+  moduleApp.addClasses(
     classList.productContentSpecifications,
     productContentSpecifications
   );
@@ -349,7 +271,7 @@ const createCartProductBoxes = (
 
   // 2.2.1 - Product content box - Specifications and quantity - Specifications - Label
   let productContentSpecificationsLabel = document.createElement("label");
-  addClasses(
+  moduleApp.addClasses(
     classList.productContentSpecificationsLabel,
     productContentSpecificationsLabel
   );
@@ -362,7 +284,7 @@ const createCartProductBoxes = (
 
   // 2.2.1 - Product content box - Specifications and quantity - Specifications - Select
   let productContentSpecificationsSelect = document.createElement("select");
-  addClasses(
+  moduleApp.addClasses(
     classList.productContentSpecificationsSelect,
     productContentSpecificationsSelect
   );
@@ -381,7 +303,7 @@ const createCartProductBoxes = (
   );
 
   // 2.2.1 - Product content box - Specifications and quantity - Specifications - Select - Other Option
-  for (let category of categoriesUrl) {
+  for (let category of moduleApp.categoriesUrl) {
     if (categoryName == category.name) {
       product.optionsLabel = category.optionsLabel;
       for (let options of product[category.optionsCategory]) {
@@ -404,12 +326,12 @@ const createCartProductBoxes = (
 
   // 2.2.2 - Product content box - Specifications and quantity - Quantity
   let productContentQuantity = document.createElement("div");
-  addClasses(classList.productContentQuantity, productContentQuantity);
+  moduleApp.addClasses(classList.productContentQuantity, productContentQuantity);
   productContentSpecificationsAndQuantity.appendChild(productContentQuantity);
 
   // 2.2.2 - Product content box - Specifications and quantity - Quantity - Label
   let productContentQuantityLabel = document.createElement("label");
-  addClasses(
+  moduleApp.addClasses(
     classList.productContentQuantityLabel,
     productContentQuantityLabel
   );
@@ -419,11 +341,11 @@ const createCartProductBoxes = (
 
   // 2.2.2 - Product content box - Specifications and quantity - Quantity - Input
   let productContentQuantityInput = document.createElement("input");
-  addClasses(
+  moduleApp.addClasses(
     classList.productContentQuantityInput,
     productContentQuantityInput
   );
-  setAttributes(
+  moduleApp.setAttributes(
     [
       { name: "type", value: "number" },
       { name: "step", value: 1 },
@@ -442,7 +364,7 @@ const createCartProductBoxes = (
 
   // 2.3 - Product content box - Eraser button
   let productContentEraserButton = document.createElement("p");
-  addClasses(classList.productContentEraserButton, productContentEraserButton);
+  moduleApp.addClasses(classList.productContentEraserButton, productContentEraserButton);
   productContentEraserButton.textContent = "Supprimer";
 
   productContentBox.appendChild(productContentEraserButton);
@@ -450,7 +372,7 @@ const createCartProductBoxes = (
   // -----------------
   // 3 - Product price
   let productPriceBox = document.createElement("p");
-  addClasses(classList.productPriceBox, productPriceBox);
+  moduleApp.addClasses(classList.productPriceBox, productPriceBox);
 
   subtotalProductBox(
     productContentQuantityInput.value,
@@ -505,7 +427,7 @@ const optionListeningAndUpdateToCart = (
   targetPrice
 ) => {
   targetToListen.addEventListener("change", () => {
-    let listCart = getCart();
+    let listCart = moduleApp.getCart();
     for (let i in listCart) {
       if (
         listCart[i].id == idTargeted &&
@@ -524,8 +446,8 @@ const optionListeningAndUpdateToCart = (
     }
     subtotalProductBox(quantityForPrice.value, productPrice, targetPrice);
     refreshSubTotal();
-    updateCart(listCart);
-    refreshInCartQuantityLogo();
+    moduleApp.updateCart(listCart);
+    moduleApp.refreshInCartQuantityLogo();
   });
 };
 
@@ -541,7 +463,7 @@ const eraserButtonListeningAndErase = (
   target
 ) => {
   targetToListen.addEventListener("click", () => {
-    let listCart = getCart();
+    let listCart = moduleApp.getCart();
     for (let i in listCart) {
       if (
         listCart[i].id == idTargeted &&
@@ -552,15 +474,15 @@ const eraserButtonListeningAndErase = (
         break;
       }
     }
-    updateCart(listCart);
+    moduleApp.updateCart(listCart);
     // erase products boxes displayed
     while (target.firstChild) {
       target.removeChild(target.firstChild);
     }
-    let listCartUpdated = getCart();
+    let listCartUpdated = moduleApp.getCart();
     // Refresh product displayer : For every product in cart, request server with product id
     requestProductsAndDisplay(listCartUpdated);
-    refreshInCartQuantityLogo();
+    moduleApp.refreshInCartQuantityLogo();
   });
 };
 
@@ -632,7 +554,7 @@ const listeningSubmitButton = () => {
       body.contact.city = document.querySelector("#city").value;
       body.contact.email = document.querySelector("#email").value;
 
-      let listCart = getCart();
+      let listCart = moduleApp.getCart();
       if (listCart != null) {
         if (onlyForDemoTestValidityCart(listCart)) {
           for (let i in listCart) {
@@ -681,10 +603,10 @@ const onlyForDemoTestValidityCart = (responseCart) => {
 // ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo in header
-refreshInCartQuantityLogo();
+moduleApp.refreshInCartQuantityLogo();
 
 // Ask local storage to pick up cart and if empty, transform the page in empty cart, else continue to run script
-const productsInCart = getCart();
+const productsInCart = moduleApp.getCart();
 
 // For every product in cart, request server with product id
 requestProductsAndDisplay(productsInCart);

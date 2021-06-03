@@ -4,7 +4,7 @@
 // ----------------------------------------------
 // ----------------------------------------------
 // ARRAY Categories with URL, name and options
-const categoriesUrl = [
+export const categoriesUrl = [
   {
     name: "camera",
     url: "http://localhost:3000/api/cameras",
@@ -26,7 +26,7 @@ const categoriesUrl = [
 ];
 
 // CLASS OBJECT Class for products
-class Product {
+export class Product {
   constructor(jsonProduct) {
     jsonProduct && Object.assign(this, jsonProduct);
   }
@@ -41,7 +41,7 @@ class Product {
 // -----------------------------
 // FUNCTION Refresh numbers of products in cart for the cart logo in header
 // -----------------------------
-const refreshInCartQuantityLogo = () => {
+export const refreshInCartQuantityLogo = () => {
   let listInCart = localStorage.getItem("cart");
   if (!listInCart) {
     document.querySelector("#inCartQuantity").textContent = "";
@@ -59,7 +59,7 @@ const refreshInCartQuantityLogo = () => {
 // -----------------------------
 // FUNCTION Request Get for products
 // -----------------------------
-const fetchProducts = async (url) => {
+export const fetchProducts = async (url) => {
   try {
     const response = await fetch(url);
     return await response.json();
@@ -72,7 +72,7 @@ const fetchProducts = async (url) => {
 // -----------------------------
 // FUNCTION Message for empty cart
 // -----------------------------
-const emptyCartMessage = () => {
+export const emptyCartMessage = () => {
   let emptyCartMessage = /* html */ `
     <p 
     class="
@@ -123,7 +123,7 @@ const emptyCartMessage = () => {
 // -----------------------------
 // FUNCTION Get Cart
 // -----------------------------
-const getCart = () => {
+export const getCart = () => {
   let localStorageCart = localStorage.getItem("cart");
   if (localStorageCart == null || JSON.parse(localStorageCart) == 0) {
     emptyCartMessage();
@@ -136,7 +136,7 @@ const getCart = () => {
 // -----------------------------
 // FUNCTION Update Cart
 // -----------------------------
-const updateCart = (newCart) => {
+export const updateCart = (newCart) => {
   localStorage.setItem("cart", JSON.stringify(newCart));
 };
 
@@ -144,7 +144,7 @@ const updateCart = (newCart) => {
 // -----------------------------
 // FUNCTION Add Classes
 // -----------------------------
-const addClasses = (classList, target) => {
+export const addClasses = (classList, target) => {
   for (let oneClass of classList) {
     target.classList.add(oneClass);
   }
@@ -155,7 +155,7 @@ const addClasses = (classList, target) => {
 // FUNCTION Set Attributes
 // -----------------------------
 
-const setAttributes = (array, target) => {
+export const setAttributes = (array, target) => {
   for (let attribute of array) {
     target.setAttribute(attribute.name, attribute.value);
   }
@@ -165,7 +165,7 @@ const setAttributes = (array, target) => {
 // -----------------------------
 // FUNCTION New Div
 // -----------------------------
-const newDiv = (classListTargeted) => {
+export const newDiv = (classListTargeted) => {
   let div = document.createElement("div");
   addClasses(classListTargeted, div);
   return div;
@@ -175,7 +175,7 @@ const newDiv = (classListTargeted) => {
 // -----------------------------
 // FUNCTION New Html Tag
 // -----------------------------
-const newHtmlTag = (tag, classListTargeted) => {
+export const newHtmlTag = (tag, classListTargeted) => {
   let htmlTag = document.createElement(tag);
   addClasses(classListTargeted, htmlTag);
   return htmlTag;
@@ -185,7 +185,7 @@ const newHtmlTag = (tag, classListTargeted) => {
 // -----------------------------
 // FUNCTION New Html Text
 // -----------------------------
-const newHtmlText = (tag, classListTargeted, textToAdd) => {
+export const newHtmlText = (tag, classListTargeted, textToAdd) => {
   let htmlText = document.createElement(tag);
   addClasses(classListTargeted, htmlText);
   htmlText.textContent = textToAdd;
@@ -196,28 +196,10 @@ const newHtmlText = (tag, classListTargeted, textToAdd) => {
 // -----------------------------
 // FUNCTION Erase child boxes from query selector target
 // -----------------------------
-const eraseChildBoxes = (querySelectorTargeted) => {
+export const eraseChildBoxes = (querySelectorTargeted) => {
   let target = document.querySelector(querySelectorTargeted);
   // erase products boxes displayed
   while (target.firstChild) {
     target.removeChild(target.firstChild);
   }
-};
-
-// -------
-// EXPORTS
-// -------
-export {
-  categoriesUrl,
-  Product,
-  refreshInCartQuantityLogo,
-  fetchProducts,
-  getCart,
-  updateCart,
-  addClasses,
-  setAttributes,
-  newDiv,
-  newHtmlTag,
-  newHtmlText,
-  eraseChildBoxes,
 };

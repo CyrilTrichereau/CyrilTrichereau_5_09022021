@@ -2,20 +2,7 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import {
-  categoriesUrl,
-  Product,
-  refreshInCartQuantityLogo,
-  fetchProducts,
-  getCart,
-  updateCart,
-  addClasses,
-  setAttributes,
-  newDiv,
-  newHtmlTag,
-  newHtmlText,
-  eraseChildBoxes,
-} from "../app.js";
+import * as moduleApp from "../app.js";
 
 // ----------------------------------------------
 // ----------------------------------------------
@@ -67,7 +54,7 @@ const getProductInformationWithIdAndApplyInformations = async (
   // Loop to get the right category with url with category of product to show from local storage
   for (let categoryFromcategoriesUrl of categoriesOfUrl) {
     if (productToShow.category == categoryFromcategoriesUrl.name) {
-      responseJson = await fetchProducts(
+      responseJson = await moduleApp.fetchProducts(
         categoryFromcategoriesUrl.url + "/" + productToShow.id
       );
       urlOfProduct = categoryFromcategoriesUrl.url + "/" + productToShow.id;
@@ -84,52 +71,19 @@ const getProductInformationWithIdAndApplyInformations = async (
   document.querySelector("#productDescription").textContent =
     responseJson.description;
 
-  // Apply options label, in french
-  if (productToShow.category == categoriesUrl[0].name) {
-    document.querySelector("#productOptionsLabel").textContent =
-      categoriesUrl[0].optionsLabel;
-    let arrayOptions = responseJson.lenses;
-    for (let i in arrayOptions) {
-      //Create new html tag
-      let productOtherOptions = document.createElement("option");
-      // add text
-      productOtherOptions.textContent = arrayOptions[i];
-      // add as a child of target
-      document
-        .querySelector("#productOptions")
-        .appendChild(productOtherOptions);
+  // Apply options label, in french and loop to add options
+  for (let category of moduleApp.categoriesUrl) {
+    if (productToShow.category == category.name) {
+      document.querySelector("#productOptionsLabel").textContent =
+      category.optionsLabel;
+      for (let options of responseJson[category.optionsCategory]) {
+          let addOption = document.createElement("option");
+          addOption.value = options;
+          addOption.textContent = options;
+          document.querySelector("#productOptions").appendChild(addOption);
+      }
+    } else {
     }
-  }
-  if (productToShow.category == categoriesUrl[1].name) {
-    document.querySelector("#productOptionsLabel").textContent =
-      categoriesUrl[1].optionsLabel;
-    let arrayOptions = responseJson.colors;
-    for (let i in arrayOptions) {
-      //Create new html tag
-      let productOtherOptions = document.createElement("option");
-      // add text
-      productOtherOptions.textContent = arrayOptions[i];
-      // add as a child of target
-      document
-        .querySelector("#productOptions")
-        .appendChild(productOtherOptions);
-    }
-  }
-  if (productToShow.category == categoriesUrl[2].name) {
-    document.querySelector("#productOptionsLabel").textContent =
-      categoriesUrl[2].optionsLabel;
-    let arrayOptions = responseJson.varnish;
-    for (let i in arrayOptions) {
-      //Create new html tag
-      let productOtherOptions = document.createElement("option");
-      // add text
-      productOtherOptions.textContent = arrayOptions[i];
-      // add as a child of target
-      document
-        .querySelector("#productOptions")
-        .appendChild(productOtherOptions);
-    }
-  } else {
   }
 };
 
@@ -172,7 +126,7 @@ const sendToCart = (
   } else {
   }
   localStorage.setItem("cart", JSON.stringify(listInCart));
-  refreshInCartQuantityLogo();
+  moduleApp.refreshInCartQuantityLogo();
   showAddedToCart();
 };
 //
@@ -181,8 +135,8 @@ const sendToCart = (
 // -----------------------------
 const showAddedToCart = () => {
   let addedToCart = document.querySelector("#productAddedToCart");
-  eraseChildBoxes("#productAddedToCart");
-  let addedToCartBox = newHtmlText(
+  moduleApp.eraseChildBoxes("#productAddedToCart");
+  let addedToCartBox = moduleApp.newHtmlText(
     "p",
     classList.addedToCartBox,
     "Produit ajouté !"
@@ -197,7 +151,7 @@ const showAddedToCart = () => {
 // ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo, in header
-refreshInCartQuantityLogo();
+moduleApp.refreshInCartQuantityLogo();
 
 // Load product id and category saved in local storage
 let productToShowInformations = getProductToShow();
@@ -206,7 +160,7 @@ let productToShowInformations = getProductToShow();
 let urlOfProduct;
 getProductInformationWithIdAndApplyInformations(
   productToShowInformations,
-  categoriesUrl
+  moduleApp.categoriesUrl
 );
 
 // Listening quantity

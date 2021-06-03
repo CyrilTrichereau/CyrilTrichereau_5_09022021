@@ -2,20 +2,7 @@
 // IMPORT FUNCTIONS, OBJECTS, ARRAY
 // -----------------------------
 
-import {
-  categoriesUrl,
-  Product,
-  refreshInCartQuantityLogo,
-  fetchProducts,
-  getCart,
-  updateCart,
-  addClasses,
-  setAttributes,
-  newDiv,
-  newHtmlTag,
-  newHtmlText,
-  eraseChildBoxes,
-} from "../app.js";
+import * as moduleApp from "../app.js";
 
 // ---------------------------------------
 // ---------------------------------------
@@ -135,7 +122,7 @@ const updateInformationsOnPage = (orderConfirmation) => {
 // ---------------------------------------
 
 // Refresh numbers of products in cart for the cart logo in header
-refreshInCartQuantityLogo();
+moduleApp.refreshInCartQuantityLogo();
 
 // Get the order confirmation informations on local storage and update the order confirmation number and total price on page
 getOrderConfirmationAndDisplayOrderInformations();
