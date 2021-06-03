@@ -48,3 +48,4 @@ $RECYCLE.BIN/
 
 node_modules
 dist
+package-lock.json

@@ -106,7 +106,7 @@ body {
 }
 
 .formRow input {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .formRow input:not(:placeholder-shown) {
@@ -127,7 +127,7 @@ input:focus {
   opacity: 1;
 }
 
-.formRow input:not(:valid){
+.formRow input:not(:valid) {
   color: rgba(153, 27, 27);
 }
 
@@ -136,7 +136,7 @@ input:focus {
   color: white;
   animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 3;
 }
-.formRow input:not(:focus):not(:placeholder-shown):invalid ~ .invalidCross{
+.formRow input:not(:focus):not(:placeholder-shown):invalid ~ .invalidCross {
   opacity: 1;
   animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 3;
 }

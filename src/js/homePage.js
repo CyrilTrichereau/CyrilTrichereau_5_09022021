@@ -14,7 +14,7 @@ import {
   newDiv,
   newHtmlTag,
   newHtmlText,
-  eraseChildBoxes
+  eraseChildBoxes,
 } from "../app.js";
 
 // ----------------------------------------------
@@ -44,11 +44,7 @@ const classList = {
     "hover:shadow-xl",
     "focus:shadow-2xl",
   ],
-  pictureBox: [
-    "h-60",
-    "w-full",
-    "object-cover",
-  ],
+  pictureBox: ["h-60", "w-full", "object-cover"],
   titleProduct: [
     "my-4",
     "px-6",
@@ -147,7 +143,7 @@ const displayAllProducts = async () => {
     const responseJson = await fetchProducts(category.url);
     displayCategory(responseJson, category.name);
   }
-  }
+};
 
 //
 // -----------------------------
@@ -165,7 +161,7 @@ const heroPictureAndCategoryDisplayed = async (
   // redirect link to category
   let targetLink = document.querySelector("#goToCategoryCamera");
   targetLink.addEventListener("click", () => {
-    eraseChildBoxes ("#categoryDisplayed")
+    eraseChildBoxes("#categoryDisplayed");
     displayCategory(responseJson, categoryName);
   });
 };
@@ -178,7 +174,7 @@ const clickOnFilter = (filterIdHtml, url, categoryName) => {
   let buttonFilter = document.querySelector(filterIdHtml);
   buttonFilter.addEventListener("click", async () => {
     const responseJson = await fetchProducts(url);
-    eraseChildBoxes ("#categoryDisplayed")
+    eraseChildBoxes("#categoryDisplayed");
     displayCategory(responseJson, categoryName);
   });
 };
@@ -213,7 +209,7 @@ refreshInCartQuantityLogo();
 heroPictureAndCategoryDisplayed(categoriesUrl[0].url, 4, categoriesUrl[0].name);
 
 // Display all products when loading page
-displayAllProducts()
+displayAllProducts();
 
 // Listen click on filter and create products boxes with informations from responseObject
 clickOnFilter(

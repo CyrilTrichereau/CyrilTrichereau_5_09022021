@@ -31,9 +31,9 @@ const classList = {
     "font-bold",
     "text-2xl",
     "text-center",
-    "mb-4"
+    "mb-4",
   ],
-}
+};
 
 // ---------------------------------------
 // ---------------------------------------
@@ -173,19 +173,22 @@ const sendToCart = (
   }
   localStorage.setItem("cart", JSON.stringify(listInCart));
   refreshInCartQuantityLogo();
-  showAddedToCart()
+  showAddedToCart();
 };
 //
 // -----------------------------
-  // FUNCTION Show "added to cart"
+// FUNCTION Show "added to cart"
 // -----------------------------
 const showAddedToCart = () => {
-let addedToCart = document.querySelector("#productAddedToCart")
-eraseChildBoxes("#productAddedToCart");
-let addedToCartBox = newHtmlText ("p", classList.addedToCartBox, "Produit ajouté !")
-addedToCart.appendChild(addedToCartBox)
-}
-
+  let addedToCart = document.querySelector("#productAddedToCart");
+  eraseChildBoxes("#productAddedToCart");
+  let addedToCartBox = newHtmlText(
+    "p",
+    classList.addedToCartBox,
+    "Produit ajouté !"
+  );
+  addedToCart.appendChild(addedToCartBox);
+};
 
 // ---------------------------------------
 // ---------------------------------------
