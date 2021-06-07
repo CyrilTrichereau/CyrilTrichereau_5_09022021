@@ -71,7 +71,7 @@ const displayCategory = (arrayOfProducts, categoryName) => {
   let target = document.querySelector("#categoryDisplayed");
   // create products boxes from arrayOfProducts
   for (let productInArray of arrayOfProducts) {
-    let product = new moduleApp.Product(productInArray);
+    let product = productInArray;
 
     // 1 - Create box for product
     let productBox = moduleApp.newHtmlTag("a", classList.productBox);

@@ -82,7 +82,6 @@ const getProductInformationWithIdAndApplyInformations = async (
           addOption.textContent = options;
           document.querySelector("#productOptions").appendChild(addOption);
       }
-    } else {
     }
   }
 };
@@ -109,7 +108,6 @@ const sendToCart = (
           Number(product.quantitySelected) + Number(quantityOfProduct);
         isProductAlreadyInCart = true;
         break;
-      } else {
       }
     }
   } else {
@@ -123,7 +121,6 @@ const sendToCart = (
       url: urlOfProduct,
       category: category,
     });
-  } else {
   }
   localStorage.setItem("cart", JSON.stringify(listInCart));
   moduleApp.refreshInCartQuantityLogo();

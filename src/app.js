@@ -25,13 +25,6 @@ export const categoriesUrl = [
   },
 ];
 
-// CLASS OBJECT Class for products
-export class Product {
-  constructor(jsonProduct) {
-    jsonProduct && Object.assign(this, jsonProduct);
-  }
-}
-
 // ----------------------------------------------
 // ----------------------------------------------
 // -------------   FUNCTIONS -------------
@@ -70,66 +63,14 @@ export const fetchProducts = async (url) => {
 
 //
 // -----------------------------
-// FUNCTION Message for empty cart
-// -----------------------------
-export const emptyCartMessage = () => {
-  let emptyCartMessage = /* html */ `
-    <p 
-    class="
-    w-5/6 
-    mt-8 
-    text-3xl 
-    font-black 
-    text-center">
-    Votre panier est vide !...
-    </p>
-    <i class="
-      far 
-      fa-sad-tear 
-      sadIcon
-      text-6xl
-      md:text-9xl">
-    </i>
-    <a
-    href="../index.html"
-    alt="Redirection vers la page d'accueil"
-    class="
-      w-auto
-      text-sm
-      lg:text-base
-      xl:text-lg
-      text-indigo-900
-      italic
-      font-semibold
-      text-center
-      hover:shadow-xl
-      hover:underline
-      focus:text-white
-      focus:shadow-2xl
-      hover:bg-white
-      focus:bg-indigo-900
-      rounded-3xl
-      px-4
-      mb-8
-    "
-    >
-    Retournez sur la page d'accueil afin de séléctionner des produits !
-    </a>
-    `;
-  document.querySelector("#productInCart").innerHTML = emptyCartMessage;
-};
-
-//
-// -----------------------------
 // FUNCTION Get Cart
 // -----------------------------
 export const getCart = () => {
   let localStorageCart = localStorage.getItem("cart");
-  if (localStorageCart == null || JSON.parse(localStorageCart) == 0) {
-    emptyCartMessage();
-  } else {
+  if (localStorageCart != null && JSON.parse(localStorageCart) != 0) {
+    eraseChildBoxes ("#productInCart")
     return JSON.parse(localStorageCart);
-  }
+  } 
 };
 
 //

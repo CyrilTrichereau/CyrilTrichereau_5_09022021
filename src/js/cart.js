@@ -174,7 +174,10 @@ const refreshSubTotal = () => {
   document.querySelector("#subTotal").textContent =
     subtotalOfAllProducts.toLocaleString("fr") + " €";
   // Shipping cost
-  const valueShippingCost = 15;
+  let valueShippingCost = 0;
+  if (subtotalOfAllProducts != 0 && subtotalOfAllProducts != null) {
+    valueShippingCost = 15;
+  }
   document.querySelector("#shippingCost").textContent =
     valueShippingCost.toLocaleString("fr") + " €";
   // Taxes
@@ -193,7 +196,9 @@ const refreshSubTotal = () => {
 // -----------------------------
 const requestProductsAndDisplay = async (productToRequest) => {
   for (let i in productToRequest) {
-    const responseFetch = await moduleApp.fetchProducts(productToRequest[i].url);
+    const responseFetch = await moduleApp.fetchProducts(
+      productToRequest[i].url
+    );
     let productTargeted = productToRequest[i];
     createCartProductBoxes(
       responseFetch,
@@ -223,7 +228,7 @@ const createCartProductBoxes = (
   productTargeted
 ) => {
   let target = document.querySelector("#productInCart");
-  let product = new moduleApp.Product(responseJson);
+  let product = responseJson;
 
   // Product Box
   let productBoxHtmlToAdd = document.createElement("div");
@@ -279,6 +284,11 @@ const createCartProductBoxes = (
     "for",
     "productSpecifications"
   );
+  for (let category of moduleApp.categoriesUrl) {
+    if (categoryName == category.name) {
+      product.optionsLabel = category.optionsLabel;
+    }
+  }
   productContentSpecificationsLabel.textContent = product.optionsLabel;
   productContentSpecifications.appendChild(productContentSpecificationsLabel);
 
@@ -305,7 +315,6 @@ const createCartProductBoxes = (
   // 2.2.1 - Product content box - Specifications and quantity - Specifications - Select - Other Option
   for (let category of moduleApp.categoriesUrl) {
     if (categoryName == category.name) {
-      product.optionsLabel = category.optionsLabel;
       for (let options of product[category.optionsCategory]) {
         if (productTargeted.optionSelected == options) {
           let addOption = document.createElement("option");
@@ -320,13 +329,15 @@ const createCartProductBoxes = (
           productContentSpecificationsSelect.appendChild(addOption);
         }
       }
-    } else {
     }
   }
 
   // 2.2.2 - Product content box - Specifications and quantity - Quantity
   let productContentQuantity = document.createElement("div");
-  moduleApp.addClasses(classList.productContentQuantity, productContentQuantity);
+  moduleApp.addClasses(
+    classList.productContentQuantity,
+    productContentQuantity
+  );
   productContentSpecificationsAndQuantity.appendChild(productContentQuantity);
 
   // 2.2.2 - Product content box - Specifications and quantity - Quantity - Label
@@ -364,7 +375,10 @@ const createCartProductBoxes = (
 
   // 2.3 - Product content box - Eraser button
   let productContentEraserButton = document.createElement("p");
-  moduleApp.addClasses(classList.productContentEraserButton, productContentEraserButton);
+  moduleApp.addClasses(
+    classList.productContentEraserButton,
+    productContentEraserButton
+  );
   productContentEraserButton.textContent = "Supprimer";
 
   productContentBox.appendChild(productContentEraserButton);
@@ -510,7 +524,7 @@ const sendProductsOrderAndContact = async (body) => {
 // -----------------------------
 // FUNCTION Store order response in local storage
 // -----------------------------
-const SendOrderAndStoreResponse = async (body) => {
+const sendOrderAndStoreResponse = async (body) => {
   try {
     await sendProductsOrderAndContact(body).then((responseJson) => {
       localStorage.setItem("orderConfirmation", JSON.stringify(responseJson));
@@ -560,7 +574,7 @@ const listeningSubmitButton = () => {
           for (let i in listCart) {
             body.products.push(listCart[i].id);
           }
-          SendOrderAndStoreResponse(body);
+          sendOrderAndStoreResponse(body);
         }
       } else {
         alert(
