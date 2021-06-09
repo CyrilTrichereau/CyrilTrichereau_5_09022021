@@ -195,6 +195,7 @@ const refreshSubTotal = () => {
 // FUNCTION Request products with id and create products boxes
 // -----------------------------
 const requestProductsAndDisplay = async (productToRequest) => {
+  moduleApp.eraseChildBoxes ("#productInCart")
   for (let i in productToRequest) {
     const responseFetch = await moduleApp.fetchProducts(
       productToRequest[i].url

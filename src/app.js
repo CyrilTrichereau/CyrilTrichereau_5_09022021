@@ -68,7 +68,6 @@ export const fetchProducts = async (url) => {
 export const getCart = () => {
   let localStorageCart = localStorage.getItem("cart");
   if (localStorageCart != null && JSON.parse(localStorageCart) != 0) {
-    eraseChildBoxes ("#productInCart")
     return JSON.parse(localStorageCart);
   } 
 };
